@@ -4,8 +4,8 @@ from pathlib import Path
 
 # ############### APP SERVER ###############
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", None)
-DEBUG = True
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+DEBUG = False
+ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_WHITELIST = ["http://localhost:8000", "http://127.0.0.1:8000"]
 
 
@@ -144,12 +144,3 @@ CKEDITOR_CONFIGS = {
         ),
     },
 }
-
-# if __name__ == "__main__":
-#     print("BASE_DIR: ", BASE_DIR, end="\n")
-#     print("DJANGO_ROOT: ", DJANGO_ROOT, end="\n")
-#     print("PROJECT_ROOT: ", PROJECT_ROOT, end="\n")
-#     print("PROJECT_PARENT_ROOT: ", PROJECT_PARENT_ROOT, end="\n")
-#     print("STATICFILES_DIRS: ", STATICFILES_DIRS, end="\n")
-#     print("PROJECT_TEMPLATES_DIRS: ", PROJECT_TEMPLATES_DIRS, end="\n")
-#     print("STATIC_URL: ", STATIC_URL, end="\n")
