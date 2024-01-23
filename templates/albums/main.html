@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<title>Album</title>{% endblock title %}
+
+
+{% block content %}
+<style>
+  .test {
+    display: flex;
+  }
+</style>
+
+<body>
+  <div class="m-3 container">
+    <h1>Album Main Page</h1>
+    <div class="m-3">
+      <button type="button" onclick="window.location.href='{% url 'albums:upload' %}'">새 이미지</button>
+    </div>
+    <div class="test">
+      {% for image in data%}
+        <div class="m-4">
+          <div>등록: {{ image.created_at }}</div>
+          <img src="{{ image.origin }}" alt="image" height="300px"/>
+          {% if image.caption != "" %}
+            <div>{{ image.caption }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+{% endblock content %}

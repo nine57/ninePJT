@@ -1,0 +1,35 @@
+* {
+    border: 1px solid;
+    margin: 5px;
+    padding: 10px;
+}
+
+h1,
+section,
+footer,
+.wrapper {
+    background-color: lightgrey;
+    background-clip: content-box;
+}
+
+header,
+nav,
+main {
+    background-color: lightblue;
+}
+
+li {
+    list-style-type: none;
+    margin: 0px 0px 0px 10px;
+    padding: 5px;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-button {
+    background-color: lightgrey;
+    background-clip: content-box;
+}

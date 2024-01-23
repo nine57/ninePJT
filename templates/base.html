@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Dale">
+  <meta name="description" content="">
+  <meta name="generator" content="">
+  <link rel="shortcut icon" href="{% static 'images/base/favicon/favicon.ico' %}">
+  {% block meta_description %}
+  {% endblock meta_description %}
+  <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
+  {% block stylesheet %}
+  {% endblock stylesheet %}
+  <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+  {% block javascript %}
+  {% endblock javascript %}
+  {% block title %}
+  <title>NINE</title>
+  {% endblock title %}
+</head>
+{% block content %}
+{% endblock content %}
+</html>

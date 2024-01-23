@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  {% block title %}
+  <title>기본 지도 - nine's project</title>
+  {% endblock title %}
+  {% block stylesheet %}
+  {% endblock stylesheet %}
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b903ccae465a712660fac77a18c475b"></script>
+  {% block javascript %}
+  {% endblock javascript %}
+</head>
+
+
+{% block content %}
+<div class="container" style="width:800px; height:600px;">
+  <div id="map" style="width:100%; height:100%;"></div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script src="{% static 'js/map/main.js' %}"></script>
+{% endblock footer %}

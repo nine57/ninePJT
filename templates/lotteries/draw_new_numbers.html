@@ -1,0 +1,23 @@
+{% load static %}
+<!doctype html>
+
+<html lang="ko">
+<head>
+  <meta charset = "utf-8">
+  {% comment %} <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Stylish&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css.lottery/draws.css' %}"> {% endcomment %}
+  <title>Lottery</title>
+</head>
+
+<body>
+  <h1>Numbers!</h1>
+  <ul>
+    {% for number in drawn_numbers %}
+    <li> {{ number }}</li>
+    {% endfor %}
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="{% static 'images/base/favicon/favicon.ico' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/diaries/cheatsheet.css' %}">
+  {% comment %}
+  <link rel="stylesheet" href="{% static 'css/root/reset.css' %}"> {% endcomment %}
+  {% comment %}
+  <link rel="stylesheet" href="{% static 'css/diaries/main.css' %}"> {% endcomment %}
+  <title>NINE's Page</title>
+</head>
+
+<body class="bg-body-tertiary">
+  <nav class="bd-header navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'images/base/favicon/favicon.ico'%}" alt="top_logo" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aira-current="page" href="#">Diary</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Lottery</a>
+          </li>
+          <li class="nav-item d-none">
+            <a class="nav-link" href="#">Mat-Map</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% comment %} <header class="bd-header py-3 d-flex align-items-stretch border-bottom">
+    <div class="container-fluid d-flex align-items-center">
+      <h1 class="d-flex align-items-center fs-4 text-white mb-0">
+        <img src="/docs/5.3/assets/brand/bootstrap-logo-white.svg" width="38" height="30" class="me-3"
+          alt="Bootstrap">Cheatsheet</h1>
+      <a href="/docs/5.3/examples/cheatsheet-rtl/" class="ms-auto link-light" hreflang="ar">RTL cheatsheet</a>
+    </div>
+  </header> {% endcomment %}
+  <div id="bd-cheatsheet container-fluid bg-body">
+    <section id="components">
+      <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">Diary</h2>
+      <article class="my-3" id="card">
+        <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
+          <h3>Card</h3>
+          <a class="d-flex align-items-center" href="#">Documentation</a>
+        </div>
+        <div>
+          <div class="bd-example-snippet bd-code-snippet">
+            <div class="bd-example m-0 border-0">
+              <div class="row row-cols-1 row-cols-md-2 g-4">
+                {% include "diaries/diary-card.html" %}
+                {% include "diaries/diary-card.html" %}
+                {% include "diaries/diary-card.html" %}
+                {% include "diaries/diary-card.html" %}
+                {% include "diaries/diary-card.html" %}
+                {% include "diaries/diary-card.html" %}
+                {% include "diaries/diary-card.html" %}
+                {% include "diaries/diary-card.html" %}
+                {% include "diaries/diary-card.html" %}
+                {% include "diaries/diary-card.html" %}
+                {% include "diaries/diary-card.html" %}
+                {% include "diaries/diary-card.html" %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+</body>
+
+
+
+</html>

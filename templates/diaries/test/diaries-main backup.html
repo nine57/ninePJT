@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="{% static 'images/base/favicon/favicon.ico' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/root/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'css/diaries/main.css' %}">
+  <title>NINE's Page</title>
+</head>
+
+<body>
+  <div id="wrapper">
+    <div class="bgc-lg nav-bar">
+      <div class="bgc-ly nav-item-container">
+        <img src="{% static 'images/base/favicon/favicon.ico'%}" alt="top_logo" />
+        <div class="nav-item">Lottery</div>
+        <div class="nav-item">Mat-Map</div>
+        <div class="nav-item">Chat</div>
+        <div class="nav-item">Diary</div>
+      </div>
+      <div class="bgc-ly global-nav-bar">menu</div>
+    </div>
+    <div class="main">
+      <h1 class="bgc-ly contents-title">Tltle: Project Page</h1>
+      <div class="contents-container">
+        <div class="bgc-lb contents">
+          contents
+        </div>
+        <p> text 1</p>
+        <p> text 2</p>
+        <p> text 3</p>
+        <p> text 4</p>
+      </div>
+    </div>
+    <div class="bgc-lg footer-container">
+      <img id="footer-icon" src="{% static 'images/base/favicon/favicon.ico'%}" alt="top_logo" />
+      <div class="bgc-ly footer-item-container">
+        <div class="footer-item">111</div>
+        <div class="footer-item">222</div>
+        <div class="footer-item">333</div>
+        <div class="footer-item">444</div>
+        <div class="footer-item">end</div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

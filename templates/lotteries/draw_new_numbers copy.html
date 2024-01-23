@@ -1,0 +1,32 @@
+{% load static %}
+<!doctype html>
+
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Stylish&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/lotteries/draws.css' %}">
+  <title>Lottery</title>
+</head>
+
+<body>
+  <div class="back">
+    <div class="main">
+      <div class="wrapper">
+        <h1 class="title">Numbers!</h1>
+        <ul class="list">
+          {% for number in drawn_numbers %}
+          <li>- {{ number }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

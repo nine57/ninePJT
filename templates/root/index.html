@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  <title>NINE's Page</title>
+{% endblock title %}
+
+{% block content %}
+<body>
+  body
+  <header>
+    header
+    <div class="wrapper">
+      warpper
+      <h1>h1, Project Page</h1>
+      {% comment %} for debug {% endcomment %}
+      {% if apps %}
+        <div class="m-3 p-3" style="border:1px solid blue;">
+          <h3>Testing apps</h3>
+          <ul>
+          {% for app in apps %}
+          <li>{{ app }}</li>
+          {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      <nav>
+        nav
+        <ul class="wrapper">
+          warpper
+          <hr><hr>
+          <li class="nav-button"><a>Lottery</a></li>
+          <li class="nav-button"><a>Mat-Map</a></li>
+          <li class="nav-button"><a>Chat</a></li>
+          <li class="nav-button"><a>Diary</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    main
+    <section>article</section>
+  </main>
+  <footer>
+    footer
+  </footer>
+</body>
+{% endblock content %}
