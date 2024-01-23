@@ -123,8 +123,9 @@ TEMPLATES = [
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = "/static/"
-MEDIA_URL = "/media/"
+AWS_S3_DOMAIN = os.environ.get('AWS_S3_DOMAIN', None)
+STATIC_URL = f"https://{AWS_S3_DOMAIN}/static/"
+MEDIA_URL = f"https://{AWS_S3_DOMAIN}/media/"
 STATIC_ROOT = os.path.join(PROJECT_ROOT, "dist", "static")
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, "dist", "media")
 
