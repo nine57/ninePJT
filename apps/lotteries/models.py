@@ -11,10 +11,6 @@ class DrawnNumber(models.Model):
     draw_numbers = ArrayField(base_field=models.PositiveIntegerField())
     bonus_number = models.PositiveIntegerField()
 
-    class Meta:
-        db_table = "lottery_drawn_number"
-        app_label = "lotteries"
-
 
 # {
 #     "returnValue":"success", # 요청결과

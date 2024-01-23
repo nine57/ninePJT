@@ -1,5 +1,7 @@
 from django.views.generic import TemplateView
 
+from apps.diaries import mock
+
 
 class DiariesView(TemplateView):
     template_name = "diaries/main.html"
@@ -8,8 +10,6 @@ class DiariesView(TemplateView):
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        from diaries.views import mock
-
         context = super().get_context_data(**kwargs)
         context["diaries"] = mock.mock_diaries
         return context

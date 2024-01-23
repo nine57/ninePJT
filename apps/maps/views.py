@@ -5,4 +5,3 @@ from django.views.generic import TemplateView  # DetailView, ListView, RedirectV
 
 class MapMainView(TemplateView):
     template_name = "map_base.html"
-

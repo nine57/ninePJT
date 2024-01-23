@@ -1,6 +1,7 @@
 from django.urls import path
-from maps.views import front
+
+from apps.maps.views import MapMainView
 
 urlpatterns = [
-    path("", front.MapMainView.as_view()),
+    path("", MapMainView.as_view()),
 ]
