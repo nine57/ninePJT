@@ -4,15 +4,13 @@
     justify-content: space-around;
     align-content: space-around;
     align-items: center;
-    border: 1px solid lightgray;
-    border-radius: 1rem;
-    background-color: var(--bs-gray-500)
+    background-color: var(--bs-gray-300);
 }
 
 .image-container{
     padding: 0.75rem 0.75rem 2rem 0.75rem;
     border-radius: 0.25rem;
-    background-color: var(--bs-gray-200)
+    background-color: var(--bs-white)
 }
 
 .image{
@@ -32,10 +30,6 @@
 
 
 @media (max-width: 768px) {
-    .image-area {
-        border-radius: 0.9rem;
-    }
-
     .image-container{
         padding: 0.65rem 0.65rem 1.7rem 0.65rem;
         border-radius: 0.22rem;
@@ -48,10 +42,6 @@
 }
 
 @media (max-width: 576px) {
-    .image-area {
-        border-radius: 0.75rem;
-    }
-
     .image-container{
         padding: 0.65rem 0.65rem 1.7rem 0.65rem;
         border-radius: 0.2rem;
@@ -61,4 +51,30 @@
         max-width: 8rem;
         max-height: 10rem;
     }
+}
+
+
+.page-container{
+    display: flex;
+    justify-content: space-between;
+    align-content: space-around;
+    align-items: center;
+}
+
+.page-prev{
+    flex: 1;
+    display: flex;
+    justify-content: start;
+}
+
+.page-current{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.page-next{
+    flex: 1;
+    display: flex;
+    justify-content: end;
 }

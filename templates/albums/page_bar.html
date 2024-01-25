@@ -1,0 +1,19 @@
+<div class="m-3 page-container">
+  <div class="page-prev">
+    {% if page.prev != ""%}
+    <button class="btn btn-primary btn-sm" type="button" onclick="window.location.href='{% url 'albums:list' %}{{ page.next }}'">
+      이전 페이지
+    </button>
+    {% endif %}
+  </div>
+  <div class="mx-3 page-current">
+    - {{ page.current }} - 
+  </div>
+  <div class="page-next">
+    {% if page.next != ""%}
+    <button class="btn btn-primary btn-sm"type="button" onclick="window.location.href='{% url 'albums:list' %}{{ page.next }}'">
+      다음 페이지
+    </button>
+    {% endif %}
+  </div>
+</div>

@@ -22,10 +22,11 @@
       <div class="h6">for {{ person }}</div>
       {% endif %}
     </div>
-
     {% if is_test is True %}
     <div>
-      <button type="button" onclick="window.location.href='{% url 'albums:upload' %}'">새 이미지</button>
+      <button type="button" onclick="window.location.href='{% url 'albums:upload' %}'">
+        새 이미지
+      </button>
       debug: {{ is_test }}
     </div>
     {% endif %}
@@ -56,6 +57,7 @@
         </div>
       {% endfor %}
     </div>
+    {% include "albums/page_bar.html" %}
   </div>
 </body>
 {% endblock content %}

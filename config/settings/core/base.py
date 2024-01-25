@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", None)
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_WHITELIST = ["http://localhost:8000", "http://127.0.0.1:8000"]
 
