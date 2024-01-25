@@ -11,8 +11,6 @@ if USE_AWS_S3_AS_STORAGE:
     MEDIA_FILES_STORAGE = "utilities.storages.S3MediaFilesStorage"
     STATICFILES_STORAGE = "utilities.storages.S3StaticFilesStorage"
     DEFAULT_FILE_STORAGE = MEDIA_FILES_STORAGE
-    # MEDIA_FILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-    # STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
     COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
     COLLECTFAST_THREADS = 20
 
