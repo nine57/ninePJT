@@ -11,7 +11,7 @@
   </div>
   <div class="page-next">
     {% if page.next != ""%}
-    <button class="btn btn-primary btn-sm"type="button" onclick="window.location.href='{% url 'albums:list' %}{{ page.next }}'">
+    <button class="btn btn-primary btn-sm" type="button" onclick="window.location.href='{% url 'albums:list' %}{{ page.next }}'">
       다음 페이지
     </button>
     {% endif %}
