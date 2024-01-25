@@ -1,7 +1,5 @@
-import random
-
-from django.views.generic import TemplateView  # DetailView, ListView, RedirectView
+from django.views.generic import TemplateView
 
 
 class MapMainView(TemplateView):
-    template_name = "map_base.html"
+    template_name = "maps/main.html"

@@ -8,6 +8,9 @@
 <style>
   .test {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
   }
 </style>
 
@@ -15,13 +18,15 @@
   <div class="m-3 container">
     <h1>Album Main Page</h1>
     <div class="m-3">
+      {% if is_test is True %}
       <button type="button" onclick="window.location.href='{% url 'albums:upload' %}'">새 이미지</button>
+      Debug: {{ is_test }}
+      {% endif %}
     </div>
     <div class="test">
       {% for image in data%}
         <div class="m-4">
-          <div>등록: {{ image.created_at }}</div>
-          <img src="{{ image.origin }}" alt="image" height="300px"/>
+          <img src="{{ image.origin }}" alt="image" height="250px"/>
           {% if image.caption != "" %}
             <div>{{ image.caption }}</div>
           {% endif %}
