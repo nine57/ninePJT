@@ -1,17 +1,24 @@
-.image-container {
+.image-area {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-content: space-around;
+    align-items: center;
     border: 1px solid lightgray;
     border-radius: 1rem;
     background-color: var(--bs-gray-500)
 }
 
 .image-item{
+    margin: 0.5rem 1.5rem 0.5rem 1.5rem;
     padding: 0.6rem;
     border-radius: 0.3rem;
     background-color: var(--bs-gray-200)
+}
+
+.image{
+    height: 250px;
+    width: auto;
 }
 
 .caption{
@@ -22,3 +29,12 @@
 }
 
 
+@media (max-width: 768px) {
+    .image{
+        width: 9rem;
+        height: auto;
+    }
+    .image-item{
+        margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    }
+}
