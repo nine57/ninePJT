@@ -1,34 +1,55 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}<title>Album</title>{% endblock title %}
+{% block title %}
+<title>Album</title>
+{% endblock title %}
 
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/albums/main.css' %}">
+{% endblock stylesheet %}
+
+{% block javascript %}
+  <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+{% endblock javascript %}
 
 {% block content %}
-<style>
-  .test {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: space-around;
-  }
-</style>
-
 <body>
   <div class="m-3 container">
-    <h1>Album Main Page</h1>
-    <div class="m-3">
-      {% if is_test is True %}
-      <button type="button" onclick="window.location.href='{% url 'albums:upload' %}'">새 이미지</button>
-      Debug: {{ is_test }}
+    <div class="h1">
+      Album
+      {% if person != "" %}
+      <div class="h6">for {{ person }}</div>
       {% endif %}
     </div>
-    <div class="test">
+
+    {% if is_test is True %}
+    <div>
+      <button type="button" onclick="window.location.href='{% url 'albums:upload' %}'">새 이미지</button>
+      debug: {{ is_test }}
+    </div>
+    {% endif %}
+
+    <div class="m-3">
+      <div class="dropdown">
+        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+          멤버 선택
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'albums:list' %}">전체</a></li>
+        {% for person in people %}
+          <li><a class="dropdown-item" href="{% url 'albums:list' %}?person={{ person.name }}">{{ person.name }}</a></li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="image-container">
       {% for image in data%}
-        <div class="m-4">
+        <div class="m-4 image-item">
           <img src="{{ image.origin }}" alt="image" height="250px"/>
           {% if image.caption != "" %}
-            <div>{{ image.caption }}</div>
+            <div class="caption">{{ image.caption }}</div>
           {% endif %}
         </div>
       {% endfor %}

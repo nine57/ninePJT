@@ -7,8 +7,15 @@
 <body>
   <form action="" method="post" enctype="multipart/form-data" class="m-3">
     {% csrf_token %}
-    <input type="file" accept="img/*" name="image_origin"/>
-    <input type="text" name="caption"/>
+    <div class="m-2">
+      image: <input type="file" accept="img/*" name="image_origin"/>
+    </div>
+    <div class="m-2">
+      caption: <input type="text" name="caption"/>
+    </div>
+    <div class="m-2">
+      people: <input type="text" name="people"/>
+    </div>
     <button type="submit">사진 업로드</button>
   </form>
 </body>

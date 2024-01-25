@@ -6,3 +6,8 @@ def image_serializer(image):
         "caption": caption,
     }
     return data
+
+
+def person_serializer(person):
+    data = {"name": person.name}
+    return data

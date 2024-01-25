@@ -6,6 +6,7 @@
 {% endblock title %}
 
 {% block javascript %}
+{{ block.super }}
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{ os.environ.get('KAKAO_APP_KEY') }}"></script>
 <script src="{% static 'js/map/main.js' %}"></script>
 {% endblock javascript %}
