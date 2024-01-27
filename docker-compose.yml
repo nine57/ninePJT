@@ -18,7 +18,8 @@ services:
       - ./templates:/app/templates
     env_file: ./.env
     platform: "linux/amd64"
-    networks: nine-pjt-network
+    # networks: nine-pjt-network
 
-networks:
-  - nine-pjt-network
+# networks:
+#   nine-pjt-network:
+#     driver: bridge
