@@ -21,4 +21,4 @@ services:
     networks: nine-pjt-network
 
 networks:
-  nine-pjt-network:
+  - nine-pjt-network
