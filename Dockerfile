@@ -6,6 +6,6 @@ WORKDIR /app
 
 RUN pip install --upgrade pip==23.2.1 && pip install -r requirements.txt
 
-CMD python manage.py runserver 0.0.0.0:8000 --settings=config.settings.local
+CMD python manage.py runserver 0.0.0.0:8000
 
 EXPOSE 8000
