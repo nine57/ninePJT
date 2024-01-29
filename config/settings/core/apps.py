@@ -22,6 +22,7 @@ LIBRARY_APPS = [
 ]
 
 PROJECT_APPS = [
+    "accounts",
     "albums",
     "blogs",
     "diaries",

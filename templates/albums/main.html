@@ -15,7 +15,8 @@
 
 {% block content %}
 <body>
-  <div class="m-3 container">
+  <div class="container">
+    <nav class="mt-3"></nav>
     <div class="h1">
       Album
       {% if person != "" %}
@@ -25,13 +26,15 @@
     {% if is_test is True %}
     <div>
       <button type="button" onclick="window.location.href='{% url 'albums:upload' %}'">
-        새 이미지
+        업로드 페이지
+      </button>
+      <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#imageUploadModal">
+        사진 업로드
       </button>
       debug: {{ is_test }}
     </div>
     {% endif %}
-
-    <div class="m-3">
+    <div class="my-3">
       <div class="dropdown">
         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
           멤버 선택
@@ -45,9 +48,9 @@
       </div>
     </div>
 
-    <div class="pt-3 px-3 image-area">
+    <div class="p-2 image-area">
       {% for image in data%}
-        <div class="mb-3 mx-2 image-container">
+        <div class="m-2 image-container">
           <div class="image-item">
             <img src="{{ image.origin }}" alt="image" class="image"/>
             {% if image.caption != "" %}
@@ -57,7 +60,7 @@
         </div>
       {% endfor %}
     </div>
-    {% include "albums/page_bar.html" %}
+    {% include "albums/page-bar.html" %}
   </div>
 </body>
 {% endblock content %}
