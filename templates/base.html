@@ -2,25 +2,28 @@
 
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  {% block title %}
-  <title>NINE PJT</title>
-  {% endblock title %}
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Dale">
-  <meta name="description" content="">
-  <meta name="generator" content="">
-  <link rel="shortcut icon" href="{% static 'images/base/favicon.ico' %}">
-  {% block meta_description %}
-  {% endblock meta_description %}
-  <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
-  {% block stylesheet %}
-  {% endblock stylesheet %}
-  {% block javascript %}
-  <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
-  {% endblock javascript %}
-</head>
-{% block content %}
-{% endblock content %}
+  <head>
+    {% block title %}
+    <title>NINE PJT</title>
+    {% endblock title %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="nine">
+    <meta name="description" content="">
+    <meta name="generator" content="">
+    <link rel="shortcut icon" href="{% static 'images/base/favicon.ico' %}">
+    {% block meta_description %}
+    {% endblock meta_description %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
+    {% block stylesheet %}
+    {% endblock stylesheet %}
+    {% block javascript %}
+    <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+    {% endblock javascript %}
+  </head>
+
+  <body {% block body_style %}{% endblock body_style %}>
+    {% block content %}
+    {% endblock content %}
+  </body>
 </html>

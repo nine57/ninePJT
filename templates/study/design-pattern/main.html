@@ -1,47 +1,46 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block title %}
   <title>Study - {{ title }}</title>
 {% endblock title %}
 
 {% block content %}
-<body>
-  <div class="p-4">
-    <h1>{{ title }}</h1>
-    <div style="font-size: 0.8rem;">
-      study at: <a href='https://refactoring.guru/ko/design-patterns'>refactoring.guru</a>
-    </div>
-    <hr class="mt-4">
-    {% for sub_category in data %}
-      <hr class="mb-4">
-      <h2>{{ sub_category.name }}</h2>
-      {% for post in sub_category.posts %}
-        <div class="m-3">
-          <h3>:: {{ post.title }}</h3>
-          <div class="px-2">{{ post.content|safe }}</div>
-          <ul>
-            {% for link in post.links %}
-            <li>
-              <a href='{{ link.url }}'>{{ link.name }}</a>
-            </li>
-            {% empty %}
-            <li></li>
-            <li></li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% empty %}
-        <div class="m-3">
-          No Data
-        </div>
-      {% endfor %}
+<div class="p-4">
+  <h1>{{ title }}</h1>
+  <div style="font-size: 0.8rem;">
+    study at: <a href='https://refactoring.guru/ko/design-patterns'>refactoring.guru</a>
+  </div>
+  <hr class="mt-4">
+  {% for sub_category in data %}
+    <hr class="mb-4">
+    <h2>{{ sub_category.name }}</h2>
+    {% for post in sub_category.posts %}
+      <div class="m-3">
+        <h3>:: {{ post.title }}</h3>
+        <div class="px-2">{{ post.content|safe }}</div>
+        <ul>
+          {% for link in post.links %}
+          <li>
+            <a href='{{ link.url }}'>{{ link.name }}</a>
+          </li>
+          {% empty %}
+          <li></li>
+          <li></li>
+          {% endfor %}
+        </ul>
+      </div>
     {% empty %}
       <div class="m-3">
         No Data
       </div>
     {% endfor %}
-    <hr><hr>
-  </div>
-</body>
+  {% empty %}
+    <div class="m-3">
+      No Data
+    </div>
+  {% endfor %}
+  <hr><hr>
+</div>
 {% endblock content %}
 

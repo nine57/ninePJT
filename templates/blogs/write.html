@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}<title>Blog</title>{% endblock title %}
+{% block title %}
+<title>Blog</title>
+{% endblock title %}
 
 {% block content %}
-<body>
-  <div class="m-3 container">
-    <form method ="post">
-      {% csrf_token %}
-      {{ form.media }}    
-      {{ form.as_p }}
-      <input type="submit" value="작성하기">
-    </form>
-  </div>
-</body>
+<div class="m-3 container">
+  <form method ="post">
+    {% csrf_token %}
+    {{ form.media }}    
+    {{ form.as_p }}
+    <input type="submit" value="작성하기">
+  </form>
+</div>
 {% endblock content %}

@@ -5,44 +5,51 @@
   <title>NINE's Page</title>
 {% endblock title %}
 
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/accounts/main.css' %}">
+{% endblock stylesheet %}
+
 {% block content %}
-<body>
-  body
-  <header>
-    header
-    <div class="wrapper">
-      warpper
-      <h1>h1, Project Page</h1>
-      {% comment %} for debug {% endcomment %}
-      {% if apps %}
-        <div class="m-3 p-3" style="border:1px solid blue;">
-          <h3>Testing apps</h3>
-          <ul>
-          {% for app in apps %}
-          <li>{{ app }}</li>
-          {% endfor %}
-          </ul>
-        </div>
-      {% endif %}
-      <nav>
-        nav
-        <ul class="wrapper">
-          warpper
-          <hr><hr>
-          <li class="nav-button"><a>Lottery</a></li>
-          <li class="nav-button"><a>Mat-Map</a></li>
-          <li class="nav-button"><a>Chat</a></li>
-          <li class="nav-button"><a>Diary</a></li>
-        </ul>
-      </nav>
+body
+<header id="header" class="u-header">
+  header
+  <div class="wrapper">
+    warpper
+    <h1>h1, Project Page</h1>
+    <div class="nav-item u-header__nav-item p-2">
+      <a href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">
+        {% comment %} aria-haspopup="true" aria-expanded="false" aria-labelledby="myAccountSubMenu"> {% endcomment %}
+        <span class="font-subhead text-dark">로그인</span>
+      </a>
     </div>
-  </header>
-  <main>
-    main
-    <section>article</section>
-  </main>
-  <footer>
-    footer
-  </footer>
-</body>
+    {% if apps %}
+      <div class="m-3 p-3" style="border:1px solid blue;">
+        <h3>Testing apps</h3>
+        <ul>
+        {% for app in apps %}
+        <li>{{ app }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    <nav>
+      nav
+      <ul class="wrapper">
+        warpper
+        <hr><hr>
+        <li class="nav-button"><a>Lottery</a></li>
+        <li class="nav-button"><a>Mat-Map</a></li>
+        <li class="nav-button"><a>Chat</a></li>
+        <li class="nav-button"><a>Diary</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main>
+  main
+  <section>article</section>
+</main>
+<footer>
+  footer
+</footer>
 {% endblock content %}
