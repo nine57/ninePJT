@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.8"
 
 services:
   nine-pjt:
@@ -9,7 +9,10 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 80:80
+      - 8000:8000
+    expose:
+      - "8000"
+    command: bash -c "gunicorn config.wsgi -b 0.0.0.0:8000"
     working_dir: /app
     volumes:
       - ./config:/app/config
@@ -18,8 +21,24 @@ services:
       - ./templates:/app/templates
     env_file: ./.env
     platform: "linux/amd64"
-    # networks: nine-pjt-network
+    networks:
+      - nine-pjt-network
 
-# networks:
-#   nine-pjt-network:
-#     driver: bridge
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+      - ./static:/app/static
+      - ./templates:/app/templates
+    networks: 
+      - nine-pjt-network
+    depends_on:
+      - nine-pjt
+
+networks:
+  nine-pjt-network:
+    driver: bridge

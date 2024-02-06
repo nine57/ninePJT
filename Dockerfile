@@ -5,7 +5,3 @@ COPY . /app
 WORKDIR /app
 
 RUN pip install --upgrade pip==23.2.1 && pip install -r requirements.txt
-
-CMD python manage.py runserver 0.0.0.0:80
-
-EXPOSE 80
