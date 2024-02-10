@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+<title>SignUp</title>
+{% endblock title %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/accounts/main.css' %}">
+{% endblock stylesheet %}
+
+{% block content %}
+<div class="wrapper">
+  <h1>계정 등록</h1>
+  <form method="post" action="{% url 'accounts:signup' %}">
+    {% csrf_token %}
+    <div class="input-box">
+      <div class="input-field">
+        <input type="text" name="name" placeholder="Name" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-field">
+        <input type="text" name="username" placeholder="Username (ID)" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      {% comment %} <div class="input-field">
+        <input type="text" name="email" placeholder="Email" required>
+        <i class='bx bxs-envelope'></i>
+      </div>
+      <div class="input-field">
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+        <i class='bx bxs-phone'></i>
+      </div> {% endcomment %}
+      <div class="input-field">
+        <input type="password" name="password" placeholder="Password" onkeyup="checkCapsLock(event)" required>
+        <i class='bx bxs-lock-alt'></i>
+        <div id="messageCapsLock"></div>
+      </div>
+      <div class="input-field">
+        <input type="password" name="passwordC" placeholder="Password 확인" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+    </div>
+    <label>
+      <input type="checkbox" required> 위 정보로 가입을 동의합니다.
+    </label>
+    <button type="submit" class="submit-btn">Register</button>
+  </form>
+</div>
+{% endblock content %}

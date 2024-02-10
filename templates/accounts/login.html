@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Login</title>
+{% endblock title %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/accounts/main.css' %}">
+{% endblock stylesheet %}
+
+{% block content %}
+<div class="wrapper">
+  <h1>로그인</h1>
+  <form method="post" action="{% url 'accounts:login' %}">
+    {% csrf_token %}
+    <div class="input-box">
+      <div class="input-field">
+        <input type="text" name="username" placeholder="Username (ID)" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-field">
+        <input type="password" name="password" placeholder="Password" onkeyup="checkCapsLock(event)" required>
+        <i class='bx bxs-lock-alt'></i>
+        <div id="messageCapsLock"></div>
+      </div>
+    </div>
+    <button type="submit" class="submit-btn">Login</button>
+  </form>
+</div>
+{% endblock content %}
