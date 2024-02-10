@@ -4,7 +4,7 @@ import requests
 from django.http import JsonResponse
 from django.views import View
 
-from apps.lotteries.models import DrawnNumber
+# from apps.lotteries.models import DrawnNumber
 
 # from .data import draw_number, bonus_number
 
