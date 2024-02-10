@@ -1,0 +1,9 @@
+{% for message in messages %}
+  {% if forloop.last %}
+  <div class="message-content"
+      style="display: none;"
+      data-message="{{ message }}"
+      data-level="{{ message.tags }}">
+  </div>
+  {% endif %}
+{% endfor %}

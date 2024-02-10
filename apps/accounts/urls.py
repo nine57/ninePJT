@@ -1,13 +1,11 @@
-from django.contrib.auth import views as auth_views
 from django.urls import path
 
-app_name = "users"
+from apps.accounts.views import LoginRedirectView, LoginView, SignupView
 
+app_name = "accounts"
 
 urlpatterns = [
-    path(
-        "login/",
-        auth_views.LoginView.as_view(template_name="accounts/main.html"),
-        name="login",
-    ),
+    path("signup/", SignupView.as_view(), name="signup"),
+    path("login/", LoginView.as_view(), name="login"),
+    path("redirect/", LoginRedirectView.as_view(), name="redirect"),
 ]

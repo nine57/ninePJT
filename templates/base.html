@@ -14,15 +14,25 @@
     <link rel="shortcut icon" href="{% static 'images/base/favicon.ico' %}">
     {% block meta_description %}
     {% endblock meta_description %}
-    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/root/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/libraries/bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/libraries/sweetalert/sweetalert2.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     {% block stylesheet %}
     {% endblock stylesheet %}
+    <script src="{% static 'js/libraries/sweetalert/sweetalert2.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{% static 'js/root/base/base.js' %}"></script>
     {% block javascript %}
-    <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+    <script src="{% static 'js/libraries/bootstrap/bootstrap.js' %}"></script>
     {% endblock javascript %}
   </head>
 
   <body {% block body_style %}{% endblock body_style %}>
+    {% block message %}
+      {% include "messages.html" %}
+    {% endblock message %}
+
     {% block content %}
     {% endblock content %}
   </body>

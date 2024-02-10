@@ -1,3 +1,5 @@
+from django.contrib.messages import constants as messages_constants
+
 from config.settings.core.base import PROJECT_TEMPLATES_DIRS
 
 TEMPLATES = [
@@ -15,3 +17,7 @@ TEMPLATES = [
         },
     },
 ]
+
+LOGIN_REDIRECT_URL = "accounts:redirect"
+
+MESSAGE_LEVEL = messages_constants.INFO
