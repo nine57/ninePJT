@@ -1,15 +1,15 @@
-from django.contrib.postgres.fields import ArrayField
-from django.db import models
+# from django.contrib.postgres.fields import ArrayField
+# from django.db import models
 
 
-class DrawnNumber(models.Model):
-    draw_no = models.PositiveIntegerField()
-    draw_date = models.DateTimeField()
-    total_prize = models.PositiveBigIntegerField()
-    first_prize = models.PositiveBigIntegerField()
-    first_winner_count = models.IntegerField()
-    draw_numbers = ArrayField(base_field=models.PositiveIntegerField())
-    bonus_number = models.PositiveIntegerField()
+# class DrawnNumber(models.Model):
+#     draw_no = models.PositiveIntegerField()
+#     draw_date = models.DateTimeField()
+#     total_prize = models.PositiveBigIntegerField()
+#     first_prize = models.PositiveBigIntegerField()
+#     first_winner_count = models.IntegerField()
+#     draw_numbers = ArrayField(base_field=models.PositiveIntegerField())
+#     bonus_number = models.PositiveIntegerField()
 
 
 # {
