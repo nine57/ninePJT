@@ -10,7 +10,7 @@ services:
       - ./static:/app/static
       - ./templates:/app/templates
     environment:
-      DJANGO_SETTINGS_MODULE: backend.settings.deploy
+      DJANGO_SETTINGS_MODULE: config.settings.deploy
     env_file: .env
     build:
       context: .
