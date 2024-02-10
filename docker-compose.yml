@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   nine-pjt:
+    image: nine-pjt:latest
     container_name: nine-pjt
     restart: always
     volumes:
