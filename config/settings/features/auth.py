@@ -1,3 +1,5 @@
+AUTH_USER_MODEL = "accounts.User"
+
 # Password validation
 PASSWORD_VALIDATOR_NAMES = [
     "UserAttributeSimilarityValidator",
