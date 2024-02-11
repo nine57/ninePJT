@@ -4,7 +4,7 @@ from pathlib import Path
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", None)
 DEBUG = False
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["nine-pjt.info", "https://nine-pjt.info"]
 CORS_ORIGIN_WHITELIST = ["nine-pjt.info", "https://nine-pjt.info"]
 CSRF_TRUSTED_ORIGINS = ["nine-pjt.info", "https://nine-pjt.info"]
 
