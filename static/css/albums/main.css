@@ -188,4 +188,8 @@ body {
   max-width: 8rem;
   max-height: 10rem;
   }
+
+  .albums-header{
+    flex-direction: column;
+  }
 }
