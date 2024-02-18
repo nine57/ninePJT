@@ -1,4 +1,7 @@
-def image_serializer(image):
+from apps.albums.models import Image, Person
+
+
+def image_serializer(image: Image) -> dict:
     caption = image.caption if image.caption is not None else ""
     data = {
         "created_at": image.created_at.astimezone().strftime("%Y-%m-%d %H:%M"),
@@ -8,12 +11,17 @@ def image_serializer(image):
     return data
 
 
-def person_serializer(person):
+def person_serializer(person: Person) -> dict:
     data = {"name": person.name}
     return data
 
 
-def page_serializer(page, limit, person, image_count):
+def page_serializer(
+    page: int,
+    limit: int,
+    person: Person,
+    image_count: int,
+) -> dict:
     person_query = f"&person={person}" if person else ""
     if page == 1:
         prev_query = ""

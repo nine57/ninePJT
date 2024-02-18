@@ -45,8 +45,3 @@ class AlbumSerializerTest(TestCase):
         serialized_data = person_serializer(self.person)
         expected_data = {"name": self.person.name}
         self.assertEqual(serialized_data, expected_data)
-
-    # TODO: refactor this func only for serialize without pagination
-    # def test_page_serializer(self):
-    #     page_serializer()
-    #     self.assertEqual(1, 2)
