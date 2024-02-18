@@ -17,7 +17,7 @@ class ImageUploadView(TemplateView):
         time_now = timezone.now().astimezone()
         image_origin = self.request.FILES.get("image_origin")
         caption = self.request.POST.get("caption")
-        people = self.request.POST.get("people")
+        people = self.request.POST.get("people", "")
         people_list = list(map(lambda x: x.strip(), people.split(",")))
         people_set = get_people_data()
         image_people_list = []

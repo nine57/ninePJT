@@ -1,0 +1,38 @@
+<div class="modal fade" id="imageUploadModal" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form method="post" action="{% url 'albums:upload' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">사진 등록</h1>
+        </div>
+        <div class="modal-body">
+          <div class="input-field">
+            <i class='bx bx-image-add' ></i>
+            <input class="image-input" type="file" accept="img/*" name="image_origin" required/>
+          </div>
+          <div class="input-field">
+            <i class='bx bx-text'></i>
+            <input class="caption-input" type="text" name="caption" placeholder="사진 이름"/>
+          </div>
+          <div class="select-field">
+            <i class='bx bxs-group'></i>
+            <div class="select-container">
+              <select class="select-box" multiple> 
+                {% for person in people %}
+                  <option value="person-{{ person.id }}">{{ person.name }}</option>
+                {% endfor %}
+              </select>
+              <button id="add-person" type="button" class="btn btn-secondary btn-sm">적용</button>
+              <div id="selected-options"></div>
+              <input id="selected-options-input" type="hidden" name="people"/>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">업로드</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,7 @@ def image_serializer(image: Image) -> dict:
 
 
 def person_serializer(person: Person) -> dict:
-    data = {"name": person.name}
+    data = {"id": person.id, "name": person.name}
     return data
 
 
