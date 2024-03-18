@@ -8,6 +8,12 @@ from apps.blogs.forms import PostForm
 from apps.blogs.models import Post
 
 
+class StudyView(TemplateView):
+    def get_template_names(self):
+        template_name = f"blogs/study/{self.kwargs.get('study_name')}.html"
+        return template_name
+
+
 class BlogMainView(TemplateView):
     template_name = "blogs/main.html"
 

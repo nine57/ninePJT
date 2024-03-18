@@ -29,7 +29,6 @@ PROJECT_APPS = [
     "front",
     "lotteries",
     "maps",
-    "study",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LIBRARY_APPS + PROJECT_APPS
