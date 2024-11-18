@@ -3,10 +3,14 @@ import sys
 from pathlib import Path
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", None)
-DEBUG = False
-ALLOWED_HOSTS = ["nine-pjt.info", "https://nine-pjt.info"]
-CORS_ORIGIN_WHITELIST = ["nine-pjt.info", "https://nine-pjt.info"]
-CSRF_TRUSTED_ORIGINS = ["nine-pjt.info", "https://nine-pjt.info"]
+DEBUG = True
+# ALLOWED_HOSTS = ["nine-pjt.info", "https://nine-pjt.info"]
+# CORS_ORIGIN_WHITELIST = ["nine-pjt.info", "https://nine-pjt.info"]
+# CSRF_TRUSTED_ORIGINS = ["nine-pjt.info", "https://nine-pjt.info"]
+ALLOWED_HOSTS = ["*"]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_WHITELIST = ["http://localhost:5173"]
+CSRF_TRUSTED_ORIGINS = ["*"]
 
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
@@ -24,13 +28,15 @@ STATICFILES_DIRS = [os.path.join(PROJECT_ROOT, "static")]
 PROJECT_TEMPLATES_DIRS = os.path.join(PROJECT_ROOT, "templates")
 # add apps/ to the Python path
 sys.path.append(os.path.normpath(os.path.join(PROJECT_ROOT, "apps")))
+sys.path.append(os.path.normpath(os.path.join(PROJECT_ROOT, "api")))
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Static files (CSS, JavaScript, Images)
 AWS_S3_DOMAIN = os.environ.get("AWS_S3_DOMAIN", None)
-STATIC_URL = f"https://{AWS_S3_DOMAIN}/static/"
+# STATIC_URL = f"https://{AWS_S3_DOMAIN}/static/"
+STATIC_URL = "/static/"
 MEDIA_URL = f"https://{AWS_S3_DOMAIN}/media/"
 STATIC_ROOT = os.path.join(PROJECT_ROOT, "dist", "static")
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, "dist", "media")
