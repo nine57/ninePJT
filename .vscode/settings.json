@@ -1,0 +1,214 @@
+{
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Night Owl (No Italics)",
+  "workbench.tips.enabled": false,
+  "editor.minimap.enabled": true,
+  "editor.scrollBeyondLastLine": false,
+  "editor.fontSize": 15,
+  "editor.rulers": [120],
+  "editor.showUnused": true,
+  "editor.formatOnSave": true,
+  "editor.multiCursorModifier": "alt",
+  "editor.columnSelection": false,
+  "editor.tokenColorCustomizations": {
+    "[Darcula Pycharm with Dark GUI]": {
+      "textMateRules": [
+        {
+          "scope": ["entity.other.attribute-name"],
+          "settings": {
+            "foreground": "#BABABA"
+          }
+        },
+        {
+          "scope": [
+            "text.html.jinja entity.other.jinja.delimiter.variable",
+            "text.html.jinja entity.other.jinja.delimiter.tag"
+          ],
+          "settings": {
+            "foreground": "#A9B7C6"
+          }
+        },
+        {
+          "scope": [
+            "text.html.jinja keyword.control",
+            "text.html meta.tag entity.name.tag",
+            "text.html punctuation.definition.tag.begin",
+            "text.html punctuation.definition.tag.end"
+          ],
+          "settings": {
+            "foreground": "#E8BF6A"
+          }
+        },
+        {
+          "scope": [
+            "text.html meta.tag punctuation",
+            "text.html meta.tag string.unquoted",
+            "text.html meta.tag string.quoted"
+          ],
+          "settings": {
+            "foreground": "#A5C261"
+          }
+        },
+        {
+          "scope": ["comment.line"],
+          "settings": {
+            "foreground": "#E7EC95"
+          }
+        }
+      ]
+    }
+  },
+  "editor.renderControlCharacters": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "files.insertFinalNewline": true,
+  "files.enableTrash": false,
+  "files.autoSave": "afterDelay",
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.py[co]": true,
+    "**/.git": false,
+    "**/.svn": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/.idea": true,
+    "**/.vscode": false,
+    "**/yarn.lock": true,
+    "**/tmp": true
+  },
+  "files.associations": {
+    "**/*.html": "html",
+    "**/templates/**/*.html": "django-html",
+    "**/templates/**/*": "django-txt",
+    "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+  },
+  "search.smartCase": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/.git": false,
+    "**/.DS_Store": true,
+    "**/tmp": true,
+    "**/coverage": true,
+    "**/build": true,
+    "**/Pods": true,
+    "**/*.xcodeproj": true,
+    "**/*.xcworkspace": true
+  },
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    },
+    "editor.formatOnPaste": false,
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "[django-html]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "cSpell.words": [
+    "academyaddress",
+    "academyphonenumber",
+    "alimtalk",
+    "asgi",
+    "boto3",
+    "cheatsheet",
+    "codesnippet",
+    "collectfast",
+    "corsheaders",
+    "courseplan",
+    "courseplancost",
+    "digestmod",
+    "earlybird",
+    "hakwon",
+    "kakao",
+    "matmap",
+    "neis",
+    "psutil",
+    "sendbird",
+    "Swal",
+    "userschooltimetable"
+  ],
+  "auto-close-tag.activationOnLanguage": [
+    "xml",
+    "php",
+    "blade",
+    "ejs",
+    "jinja",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "plaintext",
+    "markdown",
+    "vue",
+    "liquid",
+    "erb",
+    "lang-cfml",
+    "cfml",
+    "HTML (Eex)",
+    "django-html"
+  ],
+  "jupyter.interactiveWindow.textEditor.executeSelection": false,
+  "emmet.includeLanguages": {
+    "django-html": "html"
+  },
+  "prettier.jsxSingleQuote": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "gitlens.codeLens.authors.enabled": false,
+  "gitlens.codeLens.enabled": false,
+  "flake8.args": [
+      "--max-line-length=120"
+  ],
+  "liveServer.settings.port": 5501,
+  // "python.linting.pylintEnabled": false,
+  // "python.linting.enabled": true,
+  // "python.linting.flake8Enabled": true,
+  // "python.linting.lintOnSave": true,
+  // "python.linting.flake8Args": ["--max-line-length=120"],
+  // "python.sortImports.args": ["--multi-line=3", "--line-length=120"],
+  // "unibeautify.defaultConfig": ".unibeautifyrc.json",
+  // "beautify.language": {
+  //   "html": {
+  //     "type": ["html", "django-html"]
+  //   },
+  //   "js": {
+  //     "type": ["javascript", "json"],
+  //     "filename": [".jsbeautifyrc"]
+  //   }
+  // },
+  // "python.formatting.provider": "none",
+  // "terminal.external.osxExec": "iterm.app",
+  // "importMagic.multiline": "parentheses",
+  // "importMagic.indentWithTabs": true,
+  // "importMagic.maxColumns": 120,
+  // "[json]": {
+  //   "editor.defaultFormatter": "HookyQR.beautify"
+  // },
+  // "[css]": {
+  //   "editor.defaultFormatter": "HookyQR.beautify"
+  // },
+  // "workbench.iconTheme": "eq-material-theme-icons",
+  // "sync.gist": "9e829ed1168d2a79d39b72ca2fea8222",
+  // "workbench.editorAssociations": {
+  //   "*.ipynb": "jupyter.notebook.ipynb"
+  // },
+  // "kite.showWelcomeNotificationOnStartup": false,
+  // "[dart]": {
+  //   "editor.formatOnSave": true,
+  //   "editor.formatOnType": true,
+  //   "editor.rulers": [80],
+  //   "editor.selectionHighlight": false,
+  //   "editor.suggest.snippetsPreventQuickSuggestions": false,
+  //   "editor.suggestSelection": "first",
+  //   "editor.tabCompletion": "onlySnippets",
+  //   "editor.wordBasedSuggestions": "off"
+  // },
+  // "python.experiments.optOutFrom": [],
+  // "python.experiments.optInto": [],
+  // "beautify.config": "",
+  // "python.pythonPath": "/Users/hyeongu.kang/.pyenv/versions/3.8.10/envs/venv/bin/python",
+  }
