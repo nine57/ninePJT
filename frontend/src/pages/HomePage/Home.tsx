@@ -1,10 +1,14 @@
 import React from 'react';
-import { useExampleData } from '../hooks/useExampleData';
+import { useExampleData } from '../../hooks/useExampleData';
+
+
 const Home: React.FC = () =>{
   const { data, loading, error } = useExampleData();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
+
+
   return (
     <div>
       <h1>Hi, Project Page</h1>
@@ -12,7 +16,7 @@ const Home: React.FC = () =>{
       <div>
         <h3></h3>
         <ul>
-          {data.apps.map((item) => (
+          {data.apps.map((item: string) => (
             <li key={item}>{item}</li>
           ))}
         </ul>

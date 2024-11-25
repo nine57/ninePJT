@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { fetchExampleData } from '../api/exampleApi';
+import { fetchExampleData } from '../api/exampleAPI';
 
 export const useExampleData = () => {
   const [data, setData] = useState<any[]>([]);
