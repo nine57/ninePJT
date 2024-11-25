@@ -4,13 +4,22 @@ from pathlib import Path
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", None)
 DEBUG = True
-# ALLOWED_HOSTS = ["nine-pjt.info", "https://nine-pjt.info"]
-# CORS_ORIGIN_WHITELIST = ["nine-pjt.info", "https://nine-pjt.info"]
-# CSRF_TRUSTED_ORIGINS = ["nine-pjt.info", "https://nine-pjt.info"]
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "*",
+    # "nine-pjt.info",
+    # "https://nine-pjt.info",
+]
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ORIGIN_WHITELIST = ["http://localhost:5173"]
-CSRF_TRUSTED_ORIGINS = ["*"]
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:5173",
+    # "nine-pjt.info",
+    # "https://nine-pjt.info",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "*",
+    # "nine-pjt.info",
+    # "https://nine-pjt.info",
+]
 
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
