@@ -5,6 +5,7 @@ import Home from '../src/pages/HomePage/Home.tsx';
 import About from '../src/pages/HomePage/About.tsx';
 import Contact from '../src/pages/HomePage/Contact.tsx';
 import PokerFaceMain from '../src/pages/PokerFace/Main';
+import GatheringPage from "../src/pages/PokerFace/Gathering";
 import NotFound from '../src/pages/NotFound'; // 404 페이지
 
 const routes: RouteObject[] = [
@@ -23,6 +24,7 @@ const routes: RouteObject[] = [
     // element: <DefaultLayout />, // 기본 레이아웃 사용
     children: [
       { index: true, element: <PokerFaceMain /> }, // /poker-face 경로
+      { path: 'gathering', element: <GatheringPage /> },
     ],
   },
   {
