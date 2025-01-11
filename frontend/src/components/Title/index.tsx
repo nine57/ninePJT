@@ -1,5 +1,3 @@
-import './index.css';
-
 interface TitleProps {
   title?: string;
   coverImage?: string;

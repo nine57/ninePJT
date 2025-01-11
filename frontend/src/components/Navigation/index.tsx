@@ -4,10 +4,12 @@ import React from 'react';
 const Navigation: React.FC = () => {
   return (
     <nav>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
+      <ul className="flex space-x-8">
+        <li>
+          <Link to="/" className="text-white font-medium hover:text-gray-400 transition duration-200">
+            Home
+          </Link>
+        </li>
       </ul>
     </nav>
   );
