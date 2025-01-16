@@ -1,41 +1,56 @@
 version: "3.8"
 
 services:
-  nine-pjt:
-    image: nine-pjt:latest
-    container_name: nine-pjt
-    restart: always
-    volumes:
-      - ./config:/app/config
-      - ./apps:/app/apps
-      - ./static:/app/static
-      - ./templates:/app/templates
-    environment:
-      DJANGO_SETTINGS_MODULE: config.settings.deploy
-    env_file: .env
+  backend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./backend/Dockerfile
+    container_name: backend
+#    restart: always
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+#      --reload --log-level "debug"
     ports:
       - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings
+      PYTHONPATH: /app
+    env_file: ./backend/.env
     networks:
-      - local-net
+      - local-network
+
+#  frontend:
+#    image: frontend:latest
+#    container_name: frontend
+##    restart: always
+#    build:
+#      context: ./frontend
+#      dockerfile: Dockerfile
+#    ports:
+#      - "5173:5173" # Vite 개발 서버 포트
+#    volumes:
+#      - ./frontend:/app
+#    networks:
+#      - local-network
 
   nginx:
     image: nginx:latest
     container_name: nginx
-    restart: always
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./static:/app/static
-      - ./templates:/app/templates
+#    restart: always
     ports:
       - "80:80"
-    networks: 
-      - local-net
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./backend/static:/app/static
+      - ./backend/templates:/app/templates
+    networks:
+      - local-network
     depends_on:
-      - nine-pjt
+      - backend
+#      - frontend
 
 networks:
-  local-net:
+  local-network:
     driver: bridge

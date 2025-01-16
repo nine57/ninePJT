@@ -12,6 +12,6 @@ class Index(TemplateView):
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context_data = super().get_context_data(**kwargs)
-        apps = settings.PROJECT_APPS
+        apps = settings.INSTALLED_APPS
         context_data["apps"] = apps
         return context_data
