@@ -1,6 +1,13 @@
 import './index.css';
 
-const AlbumCard = ({ image, title, description, icon }) => {
+interface Props {
+  image: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const AlbumCard = ({ image, title, description, icon }: Props) => {
   return (
     <div className="album-card">
       <div
