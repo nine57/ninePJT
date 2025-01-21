@@ -5,7 +5,7 @@ import Contact from './Contact.tsx';
 import Experience from './Experience.tsx'
 import Extra from './Extra.tsx';
 
-const HomePage: React.FC = () => {
+const Portfolio: React.FC = () => {
   return (
     <>
       <section className="h-screen">
@@ -27,4 +27,4 @@ const HomePage: React.FC = () => {
   );
 }
 
-export default HomePage;
+export default Portfolio;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Title from '../components/Title/portfolio.tsx';
 import Navigation from '../components/Navigation/portfolio.tsx';
 
 const PortfolioLayout: React.FC = () => {
@@ -8,7 +7,9 @@ const PortfolioLayout: React.FC = () => {
     <>
       <header className="fixed top-0 left-0 w-full h-20 shadow">
         <div className="container mx-auto bg-white h-full w-[75vw] flex justify-between items-center px-8">
-          <Title/>
+          <div className="text-3xl font-extrabold tracking-wider">
+            강현구
+          </div>
           <Navigation/>
         </div>
       </header>
