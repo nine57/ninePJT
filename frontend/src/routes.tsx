@@ -1,11 +1,13 @@
 import { RouteObject } from 'react-router-dom';
-import DefaultLayout from '../src/layouts/DefaultLayout'; // 기본 레이아웃
-import PortfolioLayout from '../src/layouts/PortfolioLayout'; // 기본 레이아웃
-import PokerFaceLayout from '../src/layouts/PokerFaceLayout'; // PokerFace 전용 레이아웃
+import DefaultLayout from '../src/layouts/DefaultLayout';
+import PortfolioLayout from '../src/layouts/PortfolioLayout';
+import PokerFaceLayout from '../src/layouts/PokerFaceLayout';
 import Portfolio from './pages/Portfolio';
-import PokerFaceMain from '../src/pages/PokerFace/Main';
-import GatheringPage from "../src/pages/PokerFace/Gathering";
-import Home from "../src/pages/Home"
+import {default as PfMain} from './pages/PokerFace/Main.tsx';
+import {default as PfGathering} from '../src/pages/PokerFace/Gathering';
+import {default as PfGallery} from '../src/pages/PokerFace/Gallery';
+import {default as PfNotice} from '../src/pages/PokerFace/Notice';
+import Home from '../src/pages/Home'
 import NotFound from '../src/pages/NotFound'; // 404 페이지
 
 const routes: RouteObject[] = [
@@ -27,8 +29,10 @@ const routes: RouteObject[] = [
     path: '/poker-face',
     element: <PokerFaceLayout />, // PokerFace 전용 레이아웃 사용
     children: [
-      { index: true, element: <PokerFaceMain /> }, // /poker-face 경로
-      { path: 'gathering', element: <GatheringPage /> },
+      { index: true, element: <PfMain /> }, // /poker-face 경로
+      { path: 'notice', element: <PfNotice /> },
+      { path: 'gallery', element: <PfGallery /> },
+      { path: 'gathering', element: <PfGathering /> },
     ],
   },
   {

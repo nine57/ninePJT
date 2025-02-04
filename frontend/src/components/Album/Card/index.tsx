@@ -4,10 +4,9 @@ interface Props {
   image: string;
   title: string;
   description: string;
-  icon: string;
 }
 
-const AlbumCard = ({ image, title, description, icon }: Props) => {
+const AlbumCard = ({ image, title, description }: Props) => {
   return (
     <div className="album-card">
       <div
@@ -15,7 +14,6 @@ const AlbumCard = ({ image, title, description, icon }: Props) => {
         style={{ backgroundImage: `url(${image})` }}
       ></div>
       <div className="album-card-content">
-        <div className="album-card-icon">{icon}</div>
         <div className="album-card-title">{title}</div>
         <div className="album-card-description">{description}</div>
       </div>

@@ -24,6 +24,7 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      'quotes': ['error', 'single'],
     },
     settings: {
       react: {

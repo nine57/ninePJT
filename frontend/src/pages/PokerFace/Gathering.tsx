@@ -1,4 +1,4 @@
-const GatheringPage = () => {
+const Gathering = () => {
   return (
     <div className="min-h-screen bg-gray-100 text-gray-800">
       {/* Header */}
@@ -65,4 +65,4 @@ const GatheringPage = () => {
   );
 };
 
-export default GatheringPage;
+export default Gathering;
