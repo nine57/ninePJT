@@ -1,7 +1,7 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 import DrawNav from '../components/DrawNav';
-import mainImage from '../assets/Main.png';
+import mainImage from '../assets/PokerFace/main.png';
 
 const PokerFaceLayout: React.FC = () => {
   const tabs = [
