@@ -10,28 +10,17 @@ DEBUG = True
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(BASE_DIR)
 # add apps/ to the Python path
-sys.path.append(os.path.normpath(os.path.join(BASE_DIR, "apps")))
-sys.path.append(os.path.normpath(os.path.join(BASE_DIR, "api")))
+sys.path.append(BASE_DIR)
+sys.path.append(os.path.join(BASE_DIR, "apps"))
+sys.path.append(os.path.join(BASE_DIR, "api"))
+sys.path.append(os.path.join(BASE_DIR, "core"))
 
-# Default primary key field type
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"  # Default primary key field type
 
-ALLOWED_HOSTS = [
-    "*",
-    # "nine-pjt.info",
-    # "https://nine-pjt.info",
-]
+ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:5173",
-    # "nine-pjt.info",
-    # "https://nine-pjt.info",
-]
-CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1",
-    # "nine-pjt.info",
-    # "https://nine-pjt.info",
-]
+CORS_ORIGIN_WHITELIST = ["http://localhost:5173"]
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -58,7 +47,8 @@ INSTALLED_APPS = [
     "front",
     "lotteries",
     "maps",
-    "main"
+    "main",
+    "poker_face",
 ]
 
 MIDDLEWARE = [
@@ -73,10 +63,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
-
 
 DATABASES = {
     "default": {
