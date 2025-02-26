@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.sitemaps",
     "rest_framework",
+    "rest_framework_simplejwt",
     "corsheaders",
     "django_extensions",
     "requests",
@@ -75,6 +76,12 @@ DATABASES = {
         "HOST": os.environ["RDS_HOSTNAME"],
         "PORT": os.environ["RDS_PORT"],
     }
+}
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
 }
 
 TEMPLATES = [

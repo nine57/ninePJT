@@ -1,59 +1,51 @@
 from django.db.models import Count, Prefetch
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated
 
+from poker_face import serializers
 from poker_face.models import Notice, Poll, PollOption
-from poker_face.serializers import NoticeSerializer, PollSerializer
 
 
-class NoticeListView(APIView):
-    def get(self, request):
-        notices = Notice.objects.filter(is_active=True).order_by("-id")
-
-        serializer = NoticeSerializer(notices, many=True)
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+class NoticeListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Notice.objects.filter(is_active=True)
+    serializer_class = serializers.NoticeSerializer
 
 
-class NoticeRetrieveView(APIView):
-    def get(self, request):
-        notice = Notice.objects.filter(is_active=True).last()
+class NoticeMainRetrieveView(RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = serializers.NoticeSerializer
 
-        serializer = NoticeSerializer(notice)
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+    def get_object(self):
+        return Notice.objects.filter(is_active=True).last()
 
 
-class PollListView(APIView):
-    def get(self, request):
-        poll_options = PollOption.objects.annotate(
+class PollListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = serializers.PollSerializer
+
+    def get_queryset(self):
+        prefetch_set = PollOption.objects.filter(is_active=True).annotate(
             num=Count(expression="votes")
-        ).filter(is_active=True)
-        poll = (
-            Poll.objects.prefetch_related(
-                Prefetch(lookup="options", queryset=poll_options)
-            )
+        )
+        return (
+            Poll.objects.filter(is_active=True)
+            .prefetch_related(Prefetch(lookup="options", queryset=prefetch_set))
             .annotate(num=Count(expression="votes__voted_by", distinct=True))
-            .filter(is_active=True)
-            .last()
         )
 
-        serializer = PollSerializer(poll)
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+class PollMainRetrieveView(RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = serializers.PollSerializer
 
-class PollRetrieveView(APIView):
-    def get(self, request):
-        poll_options = PollOption.objects.annotate(
+    def get_object(self):
+        prefetch_set = PollOption.objects.filter(is_active=True).annotate(
             num=Count(expression="votes")
-        ).filter(is_active=True)
-        poll = (
-            Poll.objects.prefetch_related(
-                Prefetch(lookup="options", queryset=poll_options)
-            )
+        )
+        return (
+            Poll.objects.filter(is_active=True)
+            .prefetch_related(Prefetch(lookup="options", queryset=prefetch_set))
             .annotate(num=Count(expression="votes__voted_by", distinct=True))
-            .filter(is_active=True)
             .last()
         )
-
-        serializer = PollSerializer(poll)
-        return Response(data=serializer.data, status=status.HTTP_200_OK)

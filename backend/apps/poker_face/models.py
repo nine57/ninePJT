@@ -1,10 +1,12 @@
+from django.conf import settings
 from django.db import models
+
 from core.abstracts.models import BaseTimeStampModel
 
 
 class User(BaseTimeStampModel):
-    user_name = models.CharField(max_length=32)
-    real_name = models.CharField(max_length=8)
+    base_user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    username = models.CharField(max_length=150, unique=True)
     is_active = models.BooleanField(default=True)
 
     class Meta:
