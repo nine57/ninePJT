@@ -1,6 +1,6 @@
 import AlbumList from '../../components/Album/List';
 
-const Gallery = () => {
+const GalleryPage = () => {
 
   return (
     <div className="flex flex-col p-4">
@@ -11,4 +11,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default GalleryPage;

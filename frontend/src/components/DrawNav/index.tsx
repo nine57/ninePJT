@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {useState} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 interface Tab {
   label: string;
@@ -8,9 +8,10 @@ interface Tab {
 
 interface Props {
   tabs: Tab[];
+  onTabChange: (arg0: string) => void;
 }
 
-const DrawNav = ({ tabs }: Props) => {
+const DrawNav = ({ tabs, onTabChange }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const DrawNav = ({ tabs }: Props) => {
   const handleSelect = (path: string) => {
     navigate(path);
     setIsMenuOpen(false);
+    onTabChange(path)
   };
 
   return (

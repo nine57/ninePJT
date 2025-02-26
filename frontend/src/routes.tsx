@@ -1,12 +1,12 @@
-import { RouteObject } from 'react-router-dom';
+import {RouteObject} from 'react-router-dom';
 import DefaultLayout from '../src/layouts/DefaultLayout';
 import PortfolioLayout from '../src/layouts/PortfolioLayout';
 import PokerFaceLayout from '../src/layouts/PokerFaceLayout';
 import Portfolio from './pages/Portfolio';
-import {default as PfMain} from './pages/PokerFace/Main.tsx';
+import {default as PfMain} from './pages/PokerFace/MainPage.tsx';
 import {default as PfGathering} from '../src/pages/PokerFace/Gathering';
-import {default as PfGallery} from '../src/pages/PokerFace/Gallery';
-import {default as PfNotice} from '../src/pages/PokerFace/Notice';
+import {default as PfGallery} from './pages/PokerFace/GalleryPage.tsx';
+import {default as PfNotice} from './pages/PokerFace/NoticePage.tsx';
 import Home from '../src/pages/Home'
 import NotFound from '../src/pages/NotFound'; // 404 페이지
 

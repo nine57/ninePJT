@@ -6,7 +6,7 @@ import API from '../../api'
 const defaultNotice: NoticeProps = {title: '', content: ''};
 const defaultPoll: PollProps = {id: 0, title: '', description: '', num: 0, options: []};
 
-const Main = () => {
+const MainPage = () => {
   const [notice, setNotice] = useState<NoticeProps>(defaultNotice);
   const [poll, setPoll] = useState<PollProps>(defaultPoll);
 
@@ -39,4 +39,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default MainPage;
