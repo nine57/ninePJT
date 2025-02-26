@@ -7,7 +7,15 @@ from poker_face.models import Notice, Poll, PollOption
 from poker_face.serializers import NoticeSerializer, PollSerializer
 
 
-class NoticeView(APIView):
+class NoticeListView(APIView):
+    def get(self, request):
+        notices = Notice.objects.filter(is_active=True).order_by("-id")
+
+        serializer = NoticeSerializer(notices, many=True)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+class NoticeRetrieveView(APIView):
     def get(self, request):
         notice = Notice.objects.filter(is_active=True).last()
 
@@ -15,7 +23,25 @@ class NoticeView(APIView):
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 
-class PollView(APIView):
+class PollListView(APIView):
+    def get(self, request):
+        poll_options = PollOption.objects.annotate(
+            num=Count(expression="votes")
+        ).filter(is_active=True)
+        poll = (
+            Poll.objects.prefetch_related(
+                Prefetch(lookup="options", queryset=poll_options)
+            )
+            .annotate(num=Count(expression="votes__voted_by", distinct=True))
+            .filter(is_active=True)
+            .last()
+        )
+
+        serializer = PollSerializer(poll)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+class PollRetrieveView(APIView):
     def get(self, request):
         poll_options = PollOption.objects.annotate(
             num=Count(expression="votes")

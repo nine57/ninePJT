@@ -1,11 +1,13 @@
 from django.urls import path
 
-from poker_face.views import NoticeView, PollView
+from poker_face import views
 
 app_name = "poker_face"
 
 
 urlpatterns = [
-    path("notice/", NoticeView.as_view(), name="pf-notice"),
-    path("poll/", PollView.as_view(), name="pf-poll"),
+    path("notices/", views.NoticeListView.as_view(), name="pf-notices"),
+    path("notices/main/", views.NoticeRetrieveView.as_view(), name="pf-main-notice"),
+    path("polls/", views.PollListView.as_view(), name="pf-polls"),
+    path("polls/main/", views.PollRetrieveView.as_view(), name="pf-main-poll"),
 ]

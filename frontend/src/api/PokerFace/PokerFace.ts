@@ -6,10 +6,13 @@ export default {
   fetchNotices(): AxiosPromise {
     return http.get('/poker-face/notices/');
   },
-  fetchNotice(): AxiosPromise {
-    return http.get('/poker-face/notice/');
+  fetchMainNotice(): AxiosPromise {
+    return http.get('/poker-face/notices/main/');
   },
-  fetchPoll(): AxiosPromise {
-    return http.get('/poker-face/poll/');
+  fetchPolls(): AxiosPromise {
+    return http.get('/poker-face/polls/');
+  },
+  fetchMainPoll(): AxiosPromise {
+    return http.get('/poker-face/polls/main/');
   }
 }

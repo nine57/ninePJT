@@ -11,11 +11,11 @@ const MainPage = () => {
   const [poll, setPoll] = useState<PollProps>(defaultPoll);
 
   useEffect(() => {
-    API.pokerFace.fetchNotice().then(( response) => setNotice(response.data));
+    API.pokerFace.fetchMainNotice().then(( response) => setNotice(response.data));
   }, []);
 
   useEffect(() => {
-    API.pokerFace.fetchPoll().then(( response) => setPoll(response.data));
+    API.pokerFace.fetchMainPoll().then(( response) => setPoll(response.data));
   }, []);
 
   return (
