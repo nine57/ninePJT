@@ -3,6 +3,9 @@ import type {AxiosPromise} from 'axios';
 import http from '../http';
 
 export default {
+  login(payload: object): AxiosPromise {
+    return http.post('/login/', payload);
+  },
   fetchNotices(): AxiosPromise {
     return http.get('/poker-face/notices/');
   },

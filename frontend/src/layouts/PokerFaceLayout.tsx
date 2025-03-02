@@ -9,9 +9,9 @@ const PokerFaceLayout: React.FC = () => {
 
   const tabs = [
     { label: '메인', path: '/poker-face/' },
-    { label: '공지', path: '/poker-face/notice' },
-    { label: '갤러리', path: '/poker-face/gallery' },
-    { label: '모임', path: '/poker-face/gathering' },
+    { label: '공지', path: '/poker-face/notice/' },
+    { label: '갤러리', path: '/poker-face/gallery/' },
+    { label: '모임', path: '/poker-face/gathering/' },
     // { label: '회비', path: '/poker-face/dues' },
     // { label: '로그인', path: '/poker-face/login' },
   ];
