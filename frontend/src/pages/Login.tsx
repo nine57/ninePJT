@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import API from '../api'
+import LockIcon from '../assets/Login/lock-icon.svg?react'
+import UserIcon from '../assets/Login/user-icon.svg?react'
 
 const Login = () => {
   const [payload, setPayload] = useState({ username: '', password: '' });
@@ -30,21 +32,26 @@ const Login = () => {
         로그인
       </h1>
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-col justify-between mb-4">
+        <div className="flex flex-col justify-between mb-1">
           <div className="mb-4">
-            <input
-              className="w-full h-12 px-4 border-2 border-white border-opacity-40 rounded-md outline-none bg-transparent text-white placeholder-white placeholder-opacity-80"
-              type='text'
-              name='username'
-              placeholder='Username'
-              value={payload.username}
-              onChange={handleChange}
-              required
-            />
+            <div className="flex flex-row items-center justify-around border-2 border-white border-opacity-20 rounded-md">
+              <UserIcon className="w-6 h-6 mx-3.5 invert"/>
+              <input
+                className="w-full h-12 outline-none bg-transparent text-white placeholder-white placeholder-opacity-80"
+                type='text'
+                name='username'
+                placeholder='Username'
+                value={payload.username}
+                onChange={handleChange}
+                required
+              />
+            </div>
           </div>
-          <div className="mb-1">
+          <div className="mb-4">
+            <div className="flex flex-row items-center justify-around border-2 border-white border-opacity-20 rounded-md">
+            <LockIcon className="w-6 h-6 mx-3.5 invert"/>
             <input
-              className="w-full h-12 px-4 border-2 border-white border-opacity-40 rounded-md outline-none bg-transparent text-white placeholder-white placeholder-opacity-80"
+              className="w-full h-12 outline-none bg-transparent text-white placeholder-white placeholder-opacity-80"
               type="password"
               name="password"
               placeholder="Password"
@@ -53,6 +60,7 @@ const Login = () => {
               onKeyUp={handleKeyUp}
               required
             />
+            </div>
             <div className="mt-1 min-h-4">
               {capsLockOn &&
                 <div className="text-red-500 text-xs text-center">
@@ -65,7 +73,7 @@ const Login = () => {
       </form>
       <div className="flex flex-col items-center justify-center">
         <button
-          className="w-full p-2 border-2 rounded-lg text-black bg-white"
+          className="w-full p-2 rounded-lg text-black bg-white"
           type="submit"
         >Login</button>
       </div>
