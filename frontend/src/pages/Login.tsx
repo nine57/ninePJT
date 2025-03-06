@@ -21,26 +21,15 @@ const Login = () => {
     e.preventDefault();
     API.user.login(payload).then(
       (response) => {
-        console.log('전체 로그인 응답:', response);
-        console.log('로그인 응답 데이터:', response.data);
-        
         if (response.data.access && response.data.refresh) {
           localStorage.setItem('accessToken', response.data.access);
           localStorage.setItem('refreshToken', response.data.refresh);
-          console.log('토큰 저장 후 확인:', {
-            access: localStorage.getItem('accessToken'),
-            refresh: localStorage.getItem('refreshToken')
-          });
           navigate('/poker-face/');
-        } else {
-          console.error('토큰이 응답에 없습니다:', response.data);
         }
       }
     ).catch((error) => {
+      alert('로그인 실패');
       console.error('로그인 에러:', error);
-      if (error.response) {
-        console.error('에러 응답:', error.response.data);
-      }
     });
   };
 
@@ -53,7 +42,7 @@ const Login = () => {
         <div className="flex flex-col justify-between mb-1">
           <div className="mb-4">
             <div className="flex flex-row items-center justify-around border-2 border-white border-opacity-20 rounded-md">
-              <UserIcon className="w-6 h-6 mx-3.5 invert"/>
+              <UserIcon className="w-6 h-6 mx-3 invert"/>
               <input
                 className="w-full h-12 outline-none bg-transparent text-white placeholder-white placeholder-opacity-80"
                 type='text'
@@ -67,7 +56,7 @@ const Login = () => {
           </div>
           <div className="mb-4">
             <div className="flex flex-row items-center justify-around border-2 border-white border-opacity-20 rounded-md">
-            <LockIcon className="w-6 h-6 mx-3.5 invert"/>
+            <LockIcon className="w-6 h-6 mx-3 invert"/>
             <input
               className="w-full h-12 outline-none bg-transparent text-white placeholder-white placeholder-opacity-80"
               type="password"

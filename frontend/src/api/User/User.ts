@@ -11,8 +11,16 @@ interface LoginPayload {
   password: string;
 }
 
+interface SignupPayload {
+  username: string;
+  password: string;
+}
+
 export default {
   login(payload: LoginPayload): AxiosPromise<LoginResponse> {
     return http.post('accounts/login/', payload);
+  },
+  signup(payload: SignupPayload): AxiosPromise<{ message: string }> {
+    return http.post('accounts/signup/', payload);
   },
 }
