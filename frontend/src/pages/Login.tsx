@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+
 import API from '../api'
 import LockIcon from '../assets/Login/lock-icon.svg?react'
 import UserIcon from '../assets/Login/user-icon.svg?react'
+import {useNavigate} from 'react-router-dom';
 
 const Login = () => {
   const [payload, setPayload] = useState({ username: '', password: '' });
@@ -15,15 +16,32 @@ const Login = () => {
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
     setCapsLockOn(e.getModifierState('CapsLock'));
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    API.pokerFace.login(payload).then(
+    API.user.login(payload).then(
       (response) => {
-        const {token} = response.data;
-        localStorage.setItem('token', token);
-        navigate('/poker-face/');
+        console.log('전체 로그인 응답:', response);
+        console.log('로그인 응답 데이터:', response.data);
+        
+        if (response.data.access && response.data.refresh) {
+          localStorage.setItem('accessToken', response.data.access);
+          localStorage.setItem('refreshToken', response.data.refresh);
+          console.log('토큰 저장 후 확인:', {
+            access: localStorage.getItem('accessToken'),
+            refresh: localStorage.getItem('refreshToken')
+          });
+          navigate('/poker-face/');
+        } else {
+          console.error('토큰이 응답에 없습니다:', response.data);
+        }
       }
-    ).catch((error) => console.log(error))
+    ).catch((error) => {
+      console.error('로그인 에러:', error);
+      if (error.response) {
+        console.error('에러 응답:', error.response.data);
+      }
+    });
   };
 
   return (
@@ -70,13 +88,13 @@ const Login = () => {
             </div>
           </div>
         </div>
+        <div className="flex flex-col items-center justify-center">
+          <button
+            className="w-full p-2 rounded-lg text-black bg-white"
+            type="submit"
+          >Login</button>
+        </div>
       </form>
-      <div className="flex flex-col items-center justify-center">
-        <button
-          className="w-full p-2 rounded-lg text-black bg-white"
-          type="submit"
-        >Login</button>
-      </div>
     </div>
   );
 };
