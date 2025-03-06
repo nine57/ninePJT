@@ -1,12 +1,15 @@
-from django.contrib import messages
-from django.contrib.auth.views import LoginView as DjangoLoginView
+from apps.accounts.service import create_user
+from django.contrib.auth import authenticate
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
-
-from apps.accounts.query import get_user
-from apps.accounts.service import create_user, update_login_success_user
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class SignupView(TemplateView):
@@ -18,25 +21,27 @@ class SignupView(TemplateView):
         return redirect("accounts:login")
 
 
-class LoginView(DjangoLoginView):
-    template_name = "accounts/login.html"
+@method_decorator(csrf_exempt, name="dispatch")
+class LoginView(APIView):
+    def post(self, request):
+        username = request.data.get("username")
+        password = request.data.get("password")
 
-    def post(self, request, *args, **kwargs):
-        request_body = self.request.POST
-        username = request_body.get("username")
-        password = request_body.get("password")
-        user = get_user(username=username)
-        if user.check_password(password):
-            update_login_success_user(user)
-            level = messages.constants.SUCCESS
-            message = f"{username}님, 반가워요!"
-            redirect_page_name = "index"
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            refresh = RefreshToken.for_user(user)
+            return Response(
+                {
+                    "access": str(refresh.access_token),
+                    "refresh": str(refresh),
+                }
+            )
         else:
-            level = messages.constants.WARNING
-            message = "로그인 정보가 맞지 않습니다."
-            redirect_page_name = "accounts:login"
-        messages.add_message(self.request, level, message)
-        return redirect(redirect_page_name)
+            return Response(
+                {"error": "잘못된 인증 정보입니다."},
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
 
 
 # TODO: make logics

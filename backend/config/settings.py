@@ -1,5 +1,6 @@
 import os
 import sys
+from datetime import timedelta
 
 from django.contrib.messages import constants as messages_constants
 
@@ -12,15 +13,20 @@ PROJECT_ROOT = os.path.dirname(BASE_DIR)
 # add apps/ to the Python path
 sys.path.append(BASE_DIR)
 sys.path.append(os.path.join(BASE_DIR, "apps"))
-sys.path.append(os.path.join(BASE_DIR, "api"))
-sys.path.append(os.path.join(BASE_DIR, "core"))
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"  # Default primary key field type
 
 ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ORIGIN_WHITELIST = ["http://localhost:5173"]
-CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1"]
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:5173"]
+CORS_ORIGIN_WHITELIST = ["http://127.0.0.1:5173"]
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:5173", "http://localhost:5173"]
+CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_NAME = "csrftoken"
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SAMESITE = "Lax"
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -45,10 +51,8 @@ INSTALLED_APPS = [
     "albums",
     "blogs",
     "diaries",
-    "front",
     "lotteries",
     "maps",
-    "main",
     "poker_face",
 ]
 
@@ -82,6 +86,16 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
+}
+
+# JWT 설정 추가
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": False,
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
 TEMPLATES = [
@@ -152,7 +166,7 @@ if USE_AWS_S3_AS_STORAGE:
     COLLECTFAST_THREADS = 20
 
     # either None or from the list of canned ACLs.
-    # if set to None then all files will inherit the bucket’s ACL.
+    # if set to None then all files will inherit the bucket's ACL.
     AWS_DEFAULT_ACL = None
 
     # The maximum amount of memory a file can take up before being rolled over into a temporary file on disk.
