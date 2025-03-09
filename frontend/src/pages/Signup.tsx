@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import API from '../api';
+import { AxiosError } from 'axios';
 import CertiIcon from '../assets/Login/certi-icon.svg?react';
 import EmailIcon from '../assets/Login/email-icon.svg?react';
 import LockIcon from '../assets/Login/lock-icon.svg?react';
@@ -13,9 +14,10 @@ const Signup = () => {
     username: '',
     password: '',
     confirmPassword: '',
+    name: '',
     phone: '',
     email: '',
-    userType: ''
+    userType: '',
   });
   const [capsLockOn, setCapsLockOn] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -39,8 +41,10 @@ const Signup = () => {
       await API.user.signup(payload);
       navigate('/login');
     } catch (err) {
-      setError('회원가입 중 오류가 발생했습니다.');
-      console.error('회원가입 에러:', err);
+      const error = err as AxiosError;
+      const errorMessage = error.response?.data as { error?: string };
+      setError(errorMessage.error || '회원가입 중 오류가 발생했습니다.');
+      console.error('회원가입 에러:', error);
     }
   };
 
@@ -107,6 +111,21 @@ const Signup = () => {
             </div>
           )}
         </div>
+        <div className="pb-4"></div>
+        <div className="flex flex-col mb-4">
+          <div className="flex items-center border-2 border-white border-opacity-20 rounded-md">
+            <UserIcon className="w-6 h-6 mx-3 invert" />
+            <input
+              className="w-full h-12 outline-none bg-transparent text-white placeholder-white placeholder-opacity-40"
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={payload.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
         <div className="flex flex-col mb-4">
           <div className="flex items-center border-2 border-white border-opacity-20 rounded-md">
             <PhoneIcon className="w-6 h-6 mx-3 invert" />
@@ -149,6 +168,7 @@ const Signup = () => {
             />
           </div>
         </div>
+        <div className="pb-4"></div>
         <div className="flex flex-col items-center justify-center">
           <button
             className="w-full p-2 rounded-lg text-black bg-white"
