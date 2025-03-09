@@ -36,12 +36,9 @@ class SignupView(APIView):
         user = User(username=username, name=name, email=email, phone=phone)
         user.set_password(password)
         user.save()
-        UserTypeAssignment.objects.create(
-            user=user, user_type=UserType.objects.get(code=user_type)
-        )
-        return Response(
-            {"message": "회원가입이 완료되었습니다."}, status=status.HTTP_201_CREATED
-        )
+        user_type = UserType.objects.get(code=user_type)
+        UserTypeAssignment.objects.create(user=user, user_type=user_type)
+        return Response({"message": "회원가입 완료"}, status=status.HTTP_201_CREATED)
 
 
 @method_decorator(csrf_exempt, name="dispatch")
@@ -52,16 +49,35 @@ class LoginView(APIView):
 
         user = authenticate(username=username, password=password)
 
-        if user is not None:
-            refresh = RefreshToken.for_user(user)
-            return Response(
-                {
-                    "access": str(refresh.access_token),
-                    "refresh": str(refresh),
-                }
-            )
-        else:
+        if user is None:
             return Response(
                 {"error": "잘못된 인증 정보입니다."},
                 status=status.HTTP_401_UNAUTHORIZED,
             )
+
+        user_type_assignment = (
+            UserTypeAssignment.objects.filter(user_id=user.id)
+            .select_related("user_type")
+            .last()
+        )
+
+        if user_type_assignment is None:
+            return Response(
+                {"error": "사용자 정보를 찾을 수 없습니다."},
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
+
+        match user_type_assignment.user_type.code:
+            case "pokerface":
+                next_url = "/poker-face/"
+            case _:
+                next_url = "/"
+
+        refresh = RefreshToken.for_user(user)
+        return Response(
+            {
+                "access": str(refresh.access_token),
+                "refresh": str(refresh),
+                "next": next_url,
+            }
+        )
