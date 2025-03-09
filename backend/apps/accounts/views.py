@@ -1,5 +1,5 @@
+from apps.accounts.models import User, UserType, UserTypeAssignment
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
@@ -11,21 +11,34 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 @method_decorator(csrf_exempt, name="dispatch")
 class SignupView(APIView):
-    permission_classes = [AllowAny]  # 모든 사용자에게 허용
+    permission_classes = [AllowAny]
 
     def post(self, request):
         username = request.data.get("username")
         password = request.data.get("password")
+        name = request.data.get("name")
+        phone = request.data.get("phone")
+        email = request.data.get("email")
+        user_type = request.data.get("userType")
 
         if User.objects.filter(username=username).exists():
             return Response(
-                {"error": "사용자가 이미 존재합니다."},
+                {"error": f"사용자({username})가 이미 존재합니다."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        user = User(username=username)
-        user.set_password(password)  # 비밀번호 해싱
+        if not (user_type and UserType.objects.filter(code=user_type).exists()):
+            return Response(
+                {"error": "유효하지 않은 가입 코드입니다."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        user = User(username=username, name=name, email=email, phone=phone)
+        user.set_password(password)
         user.save()
+        UserTypeAssignment.objects.create(
+            user=user, user_type=UserType.objects.get(code=user_type)
+        )
         return Response(
             {"message": "회원가입이 완료되었습니다."}, status=status.HTTP_201_CREATED
         )
