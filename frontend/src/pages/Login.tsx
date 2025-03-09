@@ -44,7 +44,7 @@ const Login = () => {
             <div className="flex flex-row items-center justify-around border-2 border-white border-opacity-20 rounded-md">
               <UserIcon className="w-6 h-6 mx-3 invert"/>
               <input
-                className="w-full h-12 outline-none bg-transparent text-white placeholder-white placeholder-opacity-80"
+                className="w-full h-12 outline-none bg-transparent text-white placeholder-white placeholder-opacity-40"
                 type='text'
                 name='username'
                 placeholder='Username'
@@ -56,22 +56,22 @@ const Login = () => {
           </div>
           <div className="mb-4">
             <div className="flex flex-row items-center justify-around border-2 border-white border-opacity-20 rounded-md">
-            <LockIcon className="w-6 h-6 mx-3 invert"/>
-            <input
-              className="w-full h-12 outline-none bg-transparent text-white placeholder-white placeholder-opacity-80"
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={payload.password}
-              onChange={handleChange}
-              onKeyUp={handleKeyUp}
-              required
-            />
+              <LockIcon className="w-6 h-6 mx-3 invert"/>
+              <input
+                className="w-full h-12 outline-none bg-transparent text-white placeholder-white placeholder-opacity-40"
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={payload.password}
+                onChange={handleChange}
+                onKeyUp={handleKeyUp}
+                required
+              />
             </div>
-            <div className="mt-1 min-h-4">
+            <div className="min-h-4">
               {capsLockOn &&
                 <div className="text-red-500 text-xs text-center">
-                    CapsLock이 켜져 있습니다.
+                    CapsLock On
                 </div>
               }
             </div>
