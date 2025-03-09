@@ -24,7 +24,7 @@ const Login = () => {
         if (response.data.access && response.data.refresh) {
           localStorage.setItem('accessToken', response.data.access);
           localStorage.setItem('refreshToken', response.data.refresh);
-          navigate('/poker-face/');
+          navigate(response.data.next);
         }
       }
     ).catch((error) => {

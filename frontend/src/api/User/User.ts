@@ -4,6 +4,7 @@ import http from '../http';
 interface LoginResponse {
   access: string;
   refresh: string;
+  next: string;
 }
 
 interface LoginPayload {
