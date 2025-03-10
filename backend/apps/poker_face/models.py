@@ -1,16 +1,6 @@
+from core.abstracts.models import BaseTimeStampModel
 from django.conf import settings
 from django.db import models
-
-from core.abstracts.models import BaseTimeStampModel
-
-
-class User(BaseTimeStampModel):
-    base_user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    username = models.CharField(max_length=150, unique=True)
-    is_active = models.BooleanField(default=True)
-
-    class Meta:
-        db_table = "pf_user"
 
 
 class Notice(BaseTimeStampModel):
@@ -27,7 +17,10 @@ class Poll(BaseTimeStampModel):
     title = models.CharField(max_length=255, help_text="투표 제목")
     description = models.TextField(blank=True, null=True, help_text="투표 설명")
     created_by = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="polls", help_text="투표 생성자"
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="polls",
+        help_text="투표 생성자",
     )
 
     class Meta:
@@ -45,15 +38,21 @@ class PollOption(BaseTimeStampModel):
         db_table = "pf_poll_option"
 
 
-class Vote(models.Model):
+class Vote(BaseTimeStampModel):
     poll = models.ForeignKey(
         Poll, on_delete=models.CASCADE, related_name="votes", help_text="연관된 투표"
     )
     option = models.ForeignKey(
-        PollOption, on_delete=models.CASCADE, related_name="votes", help_text="선택된 옵션"
+        PollOption,
+        on_delete=models.CASCADE,
+        related_name="votes",
+        help_text="선택된 옵션",
     )
     voted_by = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="votes", help_text="투표한 사용자"
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="votes",
+        help_text="투표한 사용자",
     )
 
     class Meta:

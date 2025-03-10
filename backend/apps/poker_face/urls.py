@@ -1,22 +1,10 @@
 from django.urls import path
-from rest_framework_simplejwt import views as jwt_views
-
 from poker_face import views
 
 app_name = "poker_face"
 
 
 urlpatterns = [
-    path(
-        "login/",
-        jwt_views.TokenObtainPairView.as_view(),
-        name="pf-login",
-    ),
-    path(
-        "refresh/",
-        jwt_views.TokenRefreshView.as_view(),
-        name="pf-token-refresh",
-    ),
     path(
         "notices/",
         views.NoticeListView.as_view(),
@@ -31,6 +19,11 @@ urlpatterns = [
         "polls/",
         views.PollListView.as_view(),
         name="pf-polls",
+    ),
+    path(
+        "polls/<int:pk>/vote/",
+        views.PollVoteView.as_view(),
+        name="pf-poll-vote",
     ),
     path(
         "polls/main/",
