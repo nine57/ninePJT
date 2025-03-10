@@ -1,21 +1,21 @@
 import React, {ReactElement, useState} from 'react';
 
+export interface Option {
+  id: number;
+  text: string;
+  num: number;
+}
+
 export interface PollProps {
-  id: number,
+  id: number;
   title: string;
   description: string;
   num: number;
   options: Option[];
+  onVote: (optionId: number) => void;
 }
 
-interface Option {
-  id: number,
-  text: string,
-  num: number,
-}
-
-const Poll = ({id: pollId, title, description, num: totalNum, options}: PollProps): ReactElement => {
-  const [cachedOptions, setCachedOptions] = useState<Option[]>(options);
+const Poll = ({ id: pollId, title, description, num: totalNum, options, onVote }: PollProps): ReactElement => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
   const handleCheckboxChange = (id: number) => {
@@ -24,13 +24,7 @@ const Poll = ({id: pollId, title, description, num: totalNum, options}: PollProp
 
   const handleVote = () => {
     if (selectedOption !== null) {
-      setCachedOptions((prevOptions) =>
-        prevOptions.map((option) =>
-          option.id === selectedOption
-            ? {...option, num: option.num + 1}
-            : option
-        )
-      );
+      onVote(selectedOption);
       setSelectedOption(null);
     }
   };
@@ -43,7 +37,7 @@ const Poll = ({id: pollId, title, description, num: totalNum, options}: PollProp
     return (
       <div className="space-y-1">
         <div
-          key={option.id}
+          key={`${pollId}-${option.id}`}
           className="flex items-center justify-between space-x-4"
         >
           {/* 체크박스와 라벨 */}
@@ -84,7 +78,7 @@ const Poll = ({id: pollId, title, description, num: totalNum, options}: PollProp
       {/* 선택지 */}
       <div className="border rounded-md p-2 space-y-4">
         {options.map((option: Option) => (
-          <PollOption key={option.id} option={option} />
+          <PollOption key={`${pollId}-${option.id}`} option={option} />
         ))}
       </div>
 

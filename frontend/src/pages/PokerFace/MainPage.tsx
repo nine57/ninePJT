@@ -3,10 +3,9 @@ import Poll, {PollProps} from '../../components/Poll'
 import {useEffect, useState} from 'react';
 
 import API from '../../api'
-import axios from 'axios';
 
 const defaultNotice: NoticeProps = {title: '', content: ''};
-const defaultPoll: PollProps = {id: 0, title: '', description: '', num: 0, options: []};
+const defaultPoll: PollProps = {id: 0, title: '', description: '', num: 0, options: [], onVote: () => {} };
 
 const MainPage = () => {
   console.log('MainPage 렌더링');
@@ -15,33 +14,49 @@ const MainPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const [noticeResponse, pollResponse] = await Promise.all([
-          API.pokerFace.fetchMainNotice(),
-          API.pokerFace.fetchMainPoll()
-        ]);
+  const fetchData = () => {
+    setIsLoading(true);
+    API.pokerFace.fetchMainNotice()
+      .then((noticeResponse) => {
         setNotice(noticeResponse.data);
+        setError(null);
+      })
+      .catch((error) => {
+        setError('데이터를 불러오는 중 오류가 발생했습니다.');
+        console.log(error);
+      })
+      .finally(() => setIsLoading(false));
+  };
+
+  const fetchPollData = () => {
+    API.pokerFace.fetchMainPoll()
+      .then((pollResponse) => {
         setPoll(pollResponse.data);
         setError(null);
-      } catch (err) {
-        if (axios.isAxiosError(err)) {
-          if (err.response?.status === 401) {
-            window.location.href = '/login';
-          } else if (err.response?.data?.code === 'token_not_valid') {
-            setError('인증이 만료되었습니다. 다시 로그인해주세요.');
-          } else {
-            setError('데이터를 불러오는 중 오류가 발생했습니다.');
-          }
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      })
+      .catch((err) => {
+        setError('투표 데이터를 불러오는 중 오류가 발생했습니다.');
+        console.error('투표 데이터 에러:', err);
+      });
+  };
+
+  useEffect(() => {
     fetchData();
+    fetchPollData();
   }, []);
+
+  const handleVote = (optionId: number) => {
+    API.pokerFace.vote(poll.id, optionId)
+      .then(() => {
+        fetchPollData();
+        setError(null);
+  })
+      .catch((err) => {
+        setError('투표 중 오류가 발생했습니다.');
+        console.error('투표 에러:', err);
+      });
+  };
+
   if (isLoading) {
     return <div className="flex justify-center items-center h-screen">로딩 중...</div>;
   }
@@ -53,21 +68,28 @@ const MainPage = () => {
           {error}
         </div>
       )}
-      <section>
-        <Notice
-          title={notice.title}
-          content={notice.content}
-        />
-      </section>
-      <section>
-        <Poll
-          id={poll.id}
-          title={poll.title}
-          description={poll.description}
-          num={poll.num}
-          options={poll.options}
-        />
-      </section>
+      { isLoading ? (
+        <div className="flex justify-center items-center h-screen">로딩 중...</div>
+      ) : (
+        <>
+          <section>
+            <Notice
+              title={notice.title}
+              content={notice.content}
+            />
+          </section>
+          <section>
+            <Poll
+              id={poll.id}
+              title={poll.title}
+              description={poll.description}
+              num={poll.num}
+              options={poll.options}
+              onVote={handleVote}
+            />
+          </section>
+        </>
+      )}
     </div>
   );
 };

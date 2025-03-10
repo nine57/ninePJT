@@ -13,5 +13,8 @@ export default {
   },
   fetchMainPoll(): AxiosPromise {
     return http.get('poker-face/polls/main/');
+  },
+  vote(pollId: number, optionId: number): AxiosPromise<{ message: string }> {
+    return http.post(`poker-face/polls/${pollId}/vote/`, { optionId });
   }
 }

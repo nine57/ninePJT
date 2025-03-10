@@ -33,23 +33,24 @@ axiosInstance.interceptors.response.use(
     const originalRequest = error.config;
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      try {
-        const refreshToken = localStorage.getItem('refreshToken');
-        if (!refreshToken) {
-          throw new Error('리프레시 토큰이 없습니다.');
+      const refreshToken = localStorage.getItem('refreshToken');
+      if (refreshToken) {
+        try {
+          const response = await axios.post('/accounts/token/refresh/', {
+            refresh: refreshToken
+          });
+          const { access } = response.data;
+          localStorage.setItem('accessToken', access);
+          originalRequest.headers.Authorization = `Bearer ${access}`;
+          return axiosInstance(originalRequest);
+        } catch (refreshError) {
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+          window.location.href = '/login/';
+          return Promise.reject(refreshError);
         }
-        const response = await axios.post('http://127.0.0.1:8000/accounts/token/refresh/', {
-          refresh: refreshToken
-        });
-        const { access } = response.data;
-        localStorage.setItem('accessToken', access);
-        originalRequest.headers.Authorization = `Bearer ${access}`;
-        return axiosInstance(originalRequest);
-      } catch (refreshError) {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        window.location.href = '/login';
-        return Promise.reject(refreshError);
+      } else {
+        window.location.href = '/login/';
       }
     }
     return Promise.reject(error);
