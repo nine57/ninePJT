@@ -39,6 +39,7 @@ class PollOption(BaseTimeStampModel):
 
 
 class Vote(BaseTimeStampModel):
+    is_active = models.BooleanField(default=True)
     poll = models.ForeignKey(
         Poll, on_delete=models.CASCADE, related_name="votes", help_text="연관된 투표"
     )

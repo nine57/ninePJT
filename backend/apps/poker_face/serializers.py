@@ -9,21 +9,23 @@ class NoticeSerializer(serializers.ModelSerializer):
 
 
 class PollOptionSerializer(serializers.ModelSerializer):
-    num = serializers.IntegerField()
+    voteCount = serializers.IntegerField(source="vote_count")
+    isVoted = serializers.BooleanField(source="is_voted")
 
     class Meta:
         model = PollOption
-        fields = ["id", "text", "num"]
+        fields = ["id", "text", "voteCount", "isVoted"]
 
 
 class PollSerializer(serializers.ModelSerializer):
-    num = serializers.IntegerField()
-    options = PollOptionSerializer(many=True)
+    voteCount = serializers.IntegerField(source="vote_count")
+    isVoted = serializers.BooleanField(source="is_voted")
+    options = PollOptionSerializer(source="option_set", many=True)
 
     class Meta:
         model = Poll
-        fields = ["id", "title", "description", "num", "options"]
+        fields = ["id", "title", "description", "voteCount", "options", "isVoted"]
 
 
 class PollVoteSerializer(serializers.Serializer):
-    optionId = serializers.IntegerField(source="option_id")
+    optionIds = serializers.ListField(child=serializers.IntegerField())

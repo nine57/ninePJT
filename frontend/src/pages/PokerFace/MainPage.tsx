@@ -1,29 +1,35 @@
 import Notice, {NoticeProps} from '../../components/Notice'
-import Poll, {PollProps} from '../../components/Poll'
+import PollCard, {Poll} from '../../components/Poll'
 import {useEffect, useState} from 'react';
 
 import API from '../../api'
 
 const defaultNotice: NoticeProps = {title: '', content: ''};
-const defaultPoll: PollProps = {id: 0, title: '', description: '', num: 0, options: [], onVote: () => {} };
+const defaultPoll: Poll = {
+  id: 0,
+  title: '',
+  description: '',
+  voteCount: 0,
+  options: [],
+  isVoted: false,
+};
 
 const MainPage = () => {
-  console.log('MainPage 렌더링');
   const [notice, setNotice] = useState<NoticeProps>(defaultNotice);
-  const [poll, setPoll] = useState<PollProps>(defaultPoll);
+  const [poll, setPoll] = useState<Poll>(defaultPoll);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchData = () => {
+  const fetchNoticeData = () => {
     setIsLoading(true);
     API.pokerFace.fetchMainNotice()
       .then((noticeResponse) => {
         setNotice(noticeResponse.data);
         setError(null);
       })
-      .catch((error) => {
+      .catch((err) => {
         setError('데이터를 불러오는 중 오류가 발생했습니다.');
-        console.log(error);
+        console.log(err);
       })
       .finally(() => setIsLoading(false));
   };
@@ -35,22 +41,22 @@ const MainPage = () => {
         setError(null);
       })
       .catch((err) => {
-        setError('투표 데이터를 불러오는 중 오류가 발생했습니다.');
-        console.error('투표 데이터 에러:', err);
+        setError('데이터를 불러오는 중 오류가 발생했습니다.');
+        console.error(err);
       });
   };
 
   useEffect(() => {
-    fetchData();
+    fetchNoticeData();
     fetchPollData();
   }, []);
 
-  const handleVote = (optionId: number) => {
-    API.pokerFace.vote(poll.id, optionId)
+  const handleVote = (optionIds: number[]) => {
+    API.pokerFace.vote(poll.id, optionIds)
       .then(() => {
         fetchPollData();
         setError(null);
-  })
+      })
       .catch((err) => {
         setError('투표 중 오류가 발생했습니다.');
         console.error('투표 에러:', err);
@@ -73,20 +79,10 @@ const MainPage = () => {
       ) : (
         <>
           <section>
-            <Notice
-              title={notice.title}
-              content={notice.content}
-            />
+            <Notice title={notice.title} content={notice.content} />
           </section>
           <section>
-            <Poll
-              id={poll.id}
-              title={poll.title}
-              description={poll.description}
-              num={poll.num}
-              options={poll.options}
-              onVote={handleVote}
-            />
+            <PollCard poll={poll} onVote={handleVote} />
           </section>
         </>
       )}
