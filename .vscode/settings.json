@@ -123,16 +123,19 @@
     "courseplancost",
     "digestmod",
     "earlybird",
+    "gunicorn",
     "hakwon",
     "kakao",
     "matmap",
     "neis",
     "pokerface",
     "psutil",
+    "PYTHONPATH",
     "sendbird",
     "simplejwt",
     "Swal",
-    "userschooltimetable"
+    "userschooltimetable",
+    "wsgi"
   ],
   "auto-close-tag.activationOnLanguage": [
     "xml",
@@ -166,51 +169,4 @@
       "--max-line-length=120"
   ],
   "liveServer.settings.port": 5501,
-  // "python.linting.pylintEnabled": false,
-  // "python.linting.enabled": true,
-  // "python.linting.flake8Enabled": true,
-  // "python.linting.lintOnSave": true,
-  // "python.linting.flake8Args": ["--max-line-length=120"],
-  // "python.sortImports.args": ["--multi-line=3", "--line-length=120"],
-  // "unibeautify.defaultConfig": ".unibeautifyrc.json",
-  // "beautify.language": {
-  //   "html": {
-  //     "type": ["html", "django-html"]
-  //   },
-  //   "js": {
-  //     "type": ["javascript", "json"],
-  //     "filename": [".jsbeautifyrc"]
-  //   }
-  // },
-  // "python.formatting.provider": "none",
-  // "terminal.external.osxExec": "iterm.app",
-  // "importMagic.multiline": "parentheses",
-  // "importMagic.indentWithTabs": true,
-  // "importMagic.maxColumns": 120,
-  // "[json]": {
-  //   "editor.defaultFormatter": "HookyQR.beautify"
-  // },
-  // "[css]": {
-  //   "editor.defaultFormatter": "HookyQR.beautify"
-  // },
-  // "workbench.iconTheme": "eq-material-theme-icons",
-  // "sync.gist": "9e829ed1168d2a79d39b72ca2fea8222",
-  // "workbench.editorAssociations": {
-  //   "*.ipynb": "jupyter.notebook.ipynb"
-  // },
-  // "kite.showWelcomeNotificationOnStartup": false,
-  // "[dart]": {
-  //   "editor.formatOnSave": true,
-  //   "editor.formatOnType": true,
-  //   "editor.rulers": [80],
-  //   "editor.selectionHighlight": false,
-  //   "editor.suggest.snippetsPreventQuickSuggestions": false,
-  //   "editor.suggestSelection": "first",
-  //   "editor.tabCompletion": "onlySnippets",
-  //   "editor.wordBasedSuggestions": "off"
-  // },
-  // "python.experiments.optOutFrom": [],
-  // "python.experiments.optInto": [],
-  // "beautify.config": "",
-  // "python.pythonPath": "/Users/hyeongu.kang/.pyenv/versions/3.8.10/envs/venv/bin/python",
   }

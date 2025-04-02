@@ -1,6 +1,6 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Navigation from '../components/Navigation/portfolio.tsx';
+import {Outlet} from 'react-router-dom';
+import Navigation from '../components/Navigation/portfolio';
 
 const PortfolioLayout: React.FC = () => {
   return (

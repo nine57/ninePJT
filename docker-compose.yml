@@ -1,17 +1,11 @@
-version: "3.8"
-
 services:
   backend:
     build:
-      context: .
-      dockerfile: ./backend/Dockerfile
+      context: ./backend
+      dockerfile: Dockerfile
     container_name: backend
     restart: always
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000 --reload --log-level "debug"
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./backend:/app
     environment:
       DJANGO_SETTINGS_MODULE: config.settings
       PYTHONPATH: /app
@@ -24,10 +18,9 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: frontend
-    ports:
-      - "5173:5173" # Vite 개발 서버 포트
     volumes:
-      - ./frontend:/app
+      - frontend_build:/app/dist
+    command: echo "Frontend build completed"
     networks:
       - local-network
 
@@ -42,7 +35,7 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./backend/static:/app/static
       - ./backend/templates:/app/templates
-      - ./frontend/dist:/usr/share/nginx/html # React 빌드 파일 경로
+      - frontend_build:/usr/share/nginx/html  # 빌드된 프론트엔드 파일 마운트
     networks:
       - local-network
     depends_on:
@@ -52,3 +45,6 @@ services:
 networks:
   local-network:
     driver: bridge
+
+volumes:
+  frontend_build:  # 빌드된 파일을 저장할 볼륨

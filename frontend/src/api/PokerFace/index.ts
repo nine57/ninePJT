@@ -1,1 +1,1 @@
-export { default } from './PokerFace.ts';
+export { default } from './PokerFace';

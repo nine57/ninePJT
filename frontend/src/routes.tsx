@@ -3,10 +3,10 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import LoginLayout from './layouts/LoginLayout';
 import NotFound from './pages/NotFound';
-import {default as PfGallery} from './pages/PokerFace/GalleryPage.tsx';
+import {default as PfGallery} from './pages/PokerFace/GalleryPage';
 import {default as PfGathering} from './pages/PokerFace/Gathering';
-import {default as PfMain} from './pages/PokerFace/MainPage.tsx';
-import {default as PfNotice} from './pages/PokerFace/NoticePage.tsx';
+import {default as PfMain} from './pages/PokerFace/MainPage';
+import {default as PfNotice} from './pages/PokerFace/NoticePage';
 import PokerFaceLayout from './layouts/PokerFaceLayout';
 import Portfolio from './pages/Portfolio';
 import PortfolioLayout from './layouts/PortfolioLayout';

@@ -1,9 +1,9 @@
 import React from 'react';
-import Main from './Main.tsx';
-import About from './About.tsx';
-import Contact from './Contact.tsx';
-import Experience from './Experience.tsx'
-import Extra from './Extra.tsx';
+import Main from './Main';
+import About from './About';
+import Contact from './Contact';
+import Experience from './Experience'
+import Extra from './Extra';
 
 const Portfolio: React.FC = () => {
   return (
