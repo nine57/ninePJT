@@ -43,7 +43,7 @@ npm run preview
 일반적인 레이어 아키텍처를 따르는 구조로 구성되어 있습니다:
 
 ```
-ninePjtFront/
+frontend/
 ├── public/              # 정적 파일
 ├── src/
 │   ├── components/      # 재사용 가능한 UI 컴포넌트

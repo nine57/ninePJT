@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
   backend:
-    build: ./ninePjtBack
+    build: ./backend
     env_file: .env
     ports:
       - "8000:8000"
@@ -20,7 +20,7 @@ services:
 
   frontend:
     build:
-      context: ./ninePjtFront
+      context: ./frontend
       args:
         VITE_API_BASE_URL: http://nine015.iptime.org:8000
     ports:

@@ -1,4 +1,4 @@
-# ninePjtBack
+# backend
 
 개인 서비스 백엔드 (Python 3.12, Django 4.2 LTS, uv)
 

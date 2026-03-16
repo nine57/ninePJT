@@ -31,9 +31,9 @@ fi
 success ".env 파일 확인"
 
 # entrypoint.sh 줄바꿈 보정 (CRLF → LF)
-if file ninePjtBack/entrypoint.sh | grep -q CRLF; then
+if file backend/entrypoint.sh | grep -q CRLF; then
     warn "entrypoint.sh에 CRLF 감지 → LF로 변환합니다."
-    sed -i 's/\r//' ninePjtBack/entrypoint.sh
+    sed -i 's/\r//' backend/entrypoint.sh
 fi
 
 # 모드 선택

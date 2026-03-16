@@ -32,7 +32,7 @@ if (-not (Test-Path ".env")) {
 Write-Success ".env 파일 확인"
 
 # entrypoint.sh CRLF → LF 변환
-$entrypoint = "ninePjtBack\entrypoint.sh"
+$entrypoint = "backend\entrypoint.sh"
 if (Test-Path $entrypoint) {
     $content = Get-Content $entrypoint -Raw
     if ($content -match "`r`n") {
