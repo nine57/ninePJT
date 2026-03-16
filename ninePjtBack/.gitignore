@@ -1,0 +1,31 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Linting
+.ruff_cache/
+
+# Django
+db.sqlite3
+staticfiles/
+.env
+
+# IDE
+.vscode/
+.idea/
+
+media/*
+
+sample/*
+
+# Claude Code
+CLAUDE*.md
+**/CLAUDE.md
+**/claude.md

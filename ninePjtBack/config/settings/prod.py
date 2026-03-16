@@ -1,0 +1,20 @@
+import os
+
+from config.settings.base import *  # noqa: F401,F403
+
+DEBUG = False
+
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_SECONDS = int(os.getenv("DJANGO_SECURE_HSTS_SECONDS", "0"))
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True if SECURE_HSTS_SECONDS else False
+SECURE_HSTS_PRELOAD = True if SECURE_HSTS_SECONDS else False
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = os.getenv("DJANGO_SECURE_SSL_REDIRECT", "true").lower() in (
+    "1",
+    "true",
+    "yes",
+)
+
+X_FRAME_OPTIONS = "DENY"
