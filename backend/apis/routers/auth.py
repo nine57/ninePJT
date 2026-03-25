@@ -5,7 +5,7 @@ from ninja import Router
 
 from apis.auth import JWTAuth, create_access_token, create_refresh_token, verify_refresh_token
 from apis.schemas.base import ErrorSchema, MessageSchema
-from apis.schemas.requests.users import LoginRequest, SignUpRequest, TokenRefreshRequest
+from apis.schemas.requests.users import LoginRequest, NicknameUpdateRequest, SignUpRequest, TokenRefreshRequest
 from apis.schemas.responses.users import (
     LoginResponse,
     MeResponse,
@@ -23,23 +23,14 @@ def signup(request, payload: SignUpRequest):
     username = (payload.username or "").strip()
     password = payload.password or ""
     email = (payload.email or "").strip()
-    name = (payload.name or "").strip()
 
     if not username or not password:
         return 400, {"detail": "username과 password는 필수입니다."}
 
-    if not name:
-        return 400, {"detail": "이름은 필수입니다."}
-
     if UserRepository.exists_by_username(username):
         return 400, {"detail": "이미 존재하는 사용자명입니다."}
 
-    user = UserRepository.create(
-        username=username,
-        password=password,
-        email=email,
-        name=name,
-    )
+    user = UserRepository.create(username=username, password=password, email=email)
     send_signup_notification(username=username, email=email)
     return 201, user
 
@@ -77,6 +68,19 @@ def logout(request):
 @router.get("/me", auth=JWTAuth(), response={200: MeResponse, 401: ErrorSchema})
 def me(request):
     return 200, request.auth
+
+
+@router.patch("/me", auth=JWTAuth(), response={200: MeResponse, 400: ErrorSchema})
+def update_me(request, payload: NicknameUpdateRequest):
+    """내 닉네임(표시 이름) 변경"""
+    nickname = (payload.nickname or "").strip()
+    if not nickname or len(nickname) < 2 or len(nickname) > 20:
+        return 400, {"detail": "닉네임은 2~20자여야 합니다."}
+
+    user = request.auth
+    user.first_name = nickname
+    user.save(update_fields=["first_name"])
+    return 200, user
 
 
 @router.post("/refresh", response={200: TokenRefreshResponse, 400: ErrorSchema})

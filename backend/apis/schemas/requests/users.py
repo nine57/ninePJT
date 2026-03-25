@@ -8,7 +8,6 @@ class SignUpRequest(Schema):
 
     username: str
     password: str
-    name: str
     email: Optional[str] = None
 
 

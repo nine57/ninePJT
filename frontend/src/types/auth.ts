@@ -6,14 +6,12 @@ export interface SignupRequest {
   username: string;
   password: string;
   email: string;
-  nickname: string;
 }
 
 export interface SignupResponse {
   id: number;
   username: string;
   email: string;
-  nickname: string;
 }
 
 export interface SignupError {

@@ -2,7 +2,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import {
   validateEmail,
-  validateNickname,
   validatePassword,
   validatePasswordConfirm,
   validateUsername,
@@ -23,7 +22,6 @@ export const SignupPage: React.FC = () => {
     username: '',
     password: '',
     email: '',
-    nickname: '',
   });
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [errors, setErrors] = useState<Partial<Record<keyof SignupRequest | 'passwordConfirm', string>>>({});
@@ -65,9 +63,6 @@ export const SignupPage: React.FC = () => {
       case 'email':
         result = validateEmail(value);
         break;
-      case 'nickname':
-        result = validateNickname(value);
-        break;
       default:
         return;
     }
@@ -103,11 +98,6 @@ export const SignupPage: React.FC = () => {
       newErrors.email = emailResult.error;
     }
 
-    const nicknameResult = validateNickname(formData.nickname);
-    if (!nicknameResult.isValid) {
-      newErrors.nickname = nicknameResult.error;
-    }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -123,7 +113,7 @@ export const SignupPage: React.FC = () => {
     setIsLoading(true);
     try {
       const response = await authService.signup(formData);
-      alert(`${response.nickname || response.username}님, 회원가입이 완료되었습니다!`);
+      alert(`${response.username}님, 회원가입이 완료되었습니다!`);
       navigate('/login');
     } catch (error) {
       const apiError = error as ApiError;
@@ -187,19 +177,6 @@ export const SignupPage: React.FC = () => {
               showRequiredIndicator={false}
               placeholder="이메일"
               autoComplete="email"
-              showErrorAsPlaceholder
-            />
-
-            <Input
-              id="nickname"
-              type="text"
-              value={formData.nickname}
-              onChange={handleChange('nickname')}
-              error={errors.nickname}
-              required
-              showRequiredIndicator={false}
-              placeholder="닉네임"
-              autoComplete="nickname"
               showErrorAsPlaceholder
             />
 
