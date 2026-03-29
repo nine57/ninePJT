@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import React, { useMemo, useState } from 'react';
 import { validatePassword, validateUsername } from '../utils/validation';
 
@@ -15,6 +15,7 @@ import { setTokens } from '../utils/token';
  */
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const welcomeMessage = useMemo(() => getRandomWelcomeMessage(), []);
   const [formData, setFormData] = useState<LoginRequest>({
     username: '',
@@ -89,7 +90,8 @@ export const LoginPage: React.FC = () => {
           password: '',
         });
         setErrors({});
-        navigate('/organizations/select');
+        const redirectTo = searchParams.get('redirect') || '/organizations/select';
+        navigate(redirectTo, { replace: true });
       }
     } catch (error) {
       const apiError = error as ApiError;

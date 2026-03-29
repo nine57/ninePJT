@@ -1,4 +1,4 @@
-import { getAccessToken } from './token';
+import { clearTokens, getAccessToken } from './token';
 
 /**
  * API 유틸리티 함수
@@ -41,6 +41,13 @@ export async function apiRequest<T>(url: string, options: RequestInit = {}): Pro
     data = responseText ? JSON.parse(responseText) : null;
   } catch {
     data = responseText || null;
+  }
+
+  if (response.status === 401) {
+    clearTokens();
+    const redirect = encodeURIComponent(window.location.pathname + window.location.search);
+    window.location.href = `/login?redirect=${redirect}`;
+    return Promise.reject({ message: '로그인이 필요합니다.', status: 401 } as ApiError);
   }
 
   if (!response.ok) {
